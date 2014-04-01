@@ -14,7 +14,7 @@ if(request.getParameter("logout") != null){
 
 	if (usuario.autenticar()) {		
 		System.out.println("Usuario logando:" + usuario.getEmail() );
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("listaPedidos.jsp");
 	} else{
 		usuario.setEmail(null);
 		usuario.setSenha(null);

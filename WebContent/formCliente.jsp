@@ -3,18 +3,16 @@
 
 <head>
 <meta charset="utf-8">
-<title>Nãotebuk</title>
+<title>Nãotebuk - Cadastro de Cliente</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/jquery-ui.css" rel="stylesheet">
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>
-<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="js/jquery-ui.js"></script>
-<script type="text/javascript" src="js/jquery.maskedinput.js"></script>
+	<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/jquery.maskedinput.js"></script>
 <script>
 	$(function() {
 		$("#datepicker").datepicker(
@@ -56,41 +54,39 @@
 				<div class="row">
 					<form role="form">
 						<div class="form-group">
-							<label>Nome</label> <input type="text" class="form-control"
-								name="" value="" id="">
+							<label>Nome</label> <input type="text" class="form-control" name="" value="" id="" required>
 						</div>
 						<div class="form-group">
-							<label>CPF</label> <input type="text" class="form-control"
-								name="" value="" id="CPF">
+							<label>CPF</label> <input type="text" class="form-control" name="" value="" id="CPF" required>
 						</div>
 						<div class="form-group">
-							<label>Data</label> <input type="text" class="form-control"
-								id="datepicker">
+							<label>Data de Nascimento</label> <input type="text" class="form-control" id="datepicker" required>
 						</div>
 						<label>Sexo</label>
 						<div class="radio">
-							<label><input type="radio" name="sexo" value="m" id="">
-								Masculino</label>
+							<label><input type="radio" name="sexo" value="m" id="">	Masculino</label>
 						</div>
 						<div class="radio">
-							<label><input type="radio" name="sexo" value="f" id="">
-								Feminino</label>
+							<label><input type="radio" name="sexo" value="f" id="">	Feminino</label>
 						</div>
 						<div class="form-group">
-							<label>Endereço</label> <input type="text" class="form-control"
-								name="" value="" id="">
+							<label>Endereço</label> 
+							<input type="text" class="form-control"
+								name="" value="" id="" required>
 						</div>
 						<div class="form-group">
-							<label>Número</label> <input type="text" class="form-control"
-								name="" value="" id="">
+							<label>Número</label> 
+							<input type="text" class="form-control"
+								name="" value="" id="" required>
 						</div>
 						<div class="form-group">
-							<label>Cidade</label> <input type="text" class="form-control"
-								name="" value="" id="">
+							<label>Cidade</label> 
+							<input type="text" class="form-control"
+								name="" value="" id="" required>
 						</div>
 						<div class="form-group">
-							<label>Estado</label> <select name="Estados" class="form-control">
-								<option value="null">Selecione o Estado</option>
+							<label>Estado</label> <select name="Estados" class="form-control">								
+								<option value="pr">Paraná</option>
 								<option value="ac">Acre</option>
 								<option value="al">Alagoas</option>
 								<option value="ap">Amapá</option>
@@ -105,8 +101,7 @@
 								<option value="mt">Mato Grosso</option>
 								<option value="mg">Minas Gerais</option>
 								<option value="pa">Pará</option>
-								<option value="pb">Paraíba</option>
-								<option value="pr">Paraná</option>
+								<option value="pb">Paraíba</option>								
 								<option value="pe">Pernambuco</option>
 								<option value="pi">Piauí</option>
 								<option value="rj">Rio de Janeiro</option>
@@ -122,13 +117,13 @@
 						</div>
 						<div class="form-group">
 							<label>E-mail</label> <input type="email" class="form-control"
-								name="" value="" id="">
+								name="" value="" id="" required>
 						</div>
 						<br>
-						<button type="submit" value="" class="btn btn-primary" />
+						<button type="submit" value="" class="btn btn-primary" >
 						Cadastrar
 						</button>
-						<button type="submit" value="" class="btn btn-default" />
+						<button type="submit" value="" class="btn btn-default" >
 						Voltar
 						</button>
 					</form>

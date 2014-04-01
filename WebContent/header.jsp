@@ -1,3 +1,9 @@
+<jsp:useBean id="usuario" scope="session" class="bean.LoginBean"/>
+
+<% 	
+	if(!usuario.isAutenticado()) response.sendRedirect("login.jsp");
+%>
+
 <!-- Header -->
 <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
 	<div class="container">

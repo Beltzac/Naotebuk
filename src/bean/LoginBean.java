@@ -10,7 +10,7 @@ public class LoginBean {
 	public boolean autenticar() {
 		System.out.println("Email: " + email + " Senha: " + senha);
 		if (email != null && senha != null)
-			if (email.equals("lol") && senha.equals("123")){
+			if (email.equals("lol@gmail.com") && senha.equals("123")){
 				autenticado = true;
 				return true;		
 			}
