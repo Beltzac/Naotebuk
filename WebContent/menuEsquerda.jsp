@@ -24,7 +24,7 @@
                 <li><a href="listaPedidos.jsp"><i class="glyphicon glyphicon-arrow-right"></i> Prontos</a></li>            
 				<li><a href="listaPedidos.jsp"><i class="glyphicon glyphicon-arrow-right"></i> Todos</a></li>	
 				<li><a href="busca.jsp"><i class="glyphicon glyphicon-arrow-right"></i> Busca</a></li>
-				<li><a href="#"><i class="glyphicon glyphicon-arrow-right"></i> Pagamento</a></li>
+				<li><a href="pagamentoConserto.jsp"><i class="glyphicon glyphicon-arrow-right"></i> Pagamento</a></li>
             </ul>
         </li>
       </ul>   
