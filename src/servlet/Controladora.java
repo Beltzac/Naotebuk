@@ -63,7 +63,7 @@ public class Controladora extends Servlet {
 		String path = getServletContext().getRealPath("/");
 
 		// carrega categorias, etc
-		carregarObjetosComuns(request, response);
+		
 
 		if (action == null) {
 			response.sendRedirect("Controladora?action=index");
@@ -81,6 +81,7 @@ public class Controladora extends Servlet {
 				} else {
 					paginaErro(request, response,
 							"Login e/ou senha incorretos", null);
+					return;
 				}
 
 				break;
@@ -690,45 +691,7 @@ public class Controladora extends Servlet {
 
 	}
 
-	private void carregarObjetosComuns(HttpServletRequest request,
-			HttpServletResponse response) {
 
-		CategoriaDAO categoriaDAO = null;
-		try {
-			categoriaDAO = new CategoriaDAO();
-		} catch (Exception e1) {
-			e1.printStackTrace();
-			paginaErro(request, response, "Erro ao processar (Categoria)",
-					e1.getMessage());
-			return;
-		}
-		List<CategoriaBean> listaCategorias = null;
-		try {
-			listaCategorias = categoriaDAO.carregarTodos();
-		} catch (Exception e) {
-			e.printStackTrace();
-			paginaErro(request, response,
-					"Erro ao carregar lista de categorias", e.getMessage());
-			return;
-		}
-
-		request.setAttribute("listaCategorias", listaCategorias);
-
-	}
-
-
-	private static String getFilename(Part part) {
-		for (String cd : part.getHeader("content-disposition").split(";")) {
-			if (cd.trim().startsWith("filename")) {
-				String filename = cd.substring(cd.indexOf('=') + 1).trim()
-						.replace("\"", "");
-				return filename.substring(filename.lastIndexOf('/') + 1)
-						.substring(filename.lastIndexOf('\\') + 1); // MSIE fix.
-			}
-		}
-		return null;
-	}
-		
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);

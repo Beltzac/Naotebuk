@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.NivelAcesso;
 import bean.LoginBean;
 
 public class Servlet extends HttpServlet {
@@ -43,7 +44,7 @@ public class Servlet extends HttpServlet {
 		LoginBean loginBean = (LoginBean) session.getAttribute("loginBean");
 		if (loginBean == null || !loginBean.isAutenticado()) {
 			paginaErro(request, response,
-					"VocÃª precisa logar para realizar esta aÃ§Ã£o", null);
+					"Você precisa logar para realizar esta ação", null);
 			return false;
 		}
 		return true;
@@ -58,9 +59,9 @@ public class Servlet extends HttpServlet {
 			return false;
 		}
 		if (loginBean == null || loginBean.getUsuario() == null
-				|| !loginBean.getUsuario().isAdministrador()) {
+				|| loginBean.getUsuario().getNivel() != NivelAcesso.GERENTE ) {
 			paginaErro(request, response,
-					"Sua conta nÃ£o possui os privilÃ©gios necessarios.", null);
+					"Sua conta não possui os privilégios necessarios.", null);
 			return false;
 		}
 		return true;
