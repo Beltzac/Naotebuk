@@ -2,6 +2,9 @@ package bean;
 
 import java.io.Serializable;
 
+import model.Estado;
+import model.TipoEquipamento;
+
 public class ConsertoBean implements Serializable {
 
 	/**
@@ -10,10 +13,10 @@ public class ConsertoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int id;
-	private int estado_id;
-	private int cliente_id;
+	private Estado estado;
+	private int cliente;
 	private String nome;
-	private boolean tipo;
+	private TipoEquipamento tipo;
 	private String modelo;
 	private String fabricante;
 	private String descricao;
@@ -31,36 +34,12 @@ public class ConsertoBean implements Serializable {
 		this.id = id;
 	}
 
-	public int getEstado_id() {
-		return estado_id;
-	}
-
-	public void setEstado_id(int estado_id) {
-		this.estado_id = estado_id;
-	}
-
-	public int getCliente_id() {
-		return cliente_id;
-	}
-
-	public void setCliente_id(int cliente_id) {
-		this.cliente_id = cliente_id;
-	}
-
 	public String getNome() {
 		return nome;
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public boolean isTipo() {
-		return tipo;
-	}
-
-	public void setTipo(boolean tipo) {
-		this.tipo = tipo;
 	}
 
 	public String getModelo() {
@@ -103,15 +82,37 @@ public class ConsertoBean implements Serializable {
 		this.valor = valor;
 	}
 
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
+	public int getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(int cliente) {
+		this.cliente = cliente;
+	}
+
+	public TipoEquipamento getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoEquipamento tipo) {
+		this.tipo = tipo;
+	}
+
 	@Override
 	public String toString() {
-		return "ConsertoBean [id=" + id + ", estado_id=" + estado_id
-				+ ", cliente_id=" + cliente_id + ", nome=" + nome + ", tipo="
-				+ tipo + ", modelo=" + modelo + ", fabricante=" + fabricante
-				+ ", descricao=" + descricao + ", observacao=" + observacao
-				+ ", valor=" + valor + "]";
-	}
-	
-	
+		return "ConsertoBean [id=" + id + ", estado=" + estado + ", cliente="
+				+ cliente + ", nome=" + nome + ", tipo=" + tipo + ", modelo="
+				+ modelo + ", fabricante=" + fabricante + ", descricao="
+				+ descricao + ", observacao=" + observacao + ", valor=" + valor
+				+ "]";
+	}	
 
 }

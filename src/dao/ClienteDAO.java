@@ -1,0 +1,124 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.List;
+
+import org.apache.commons.dbutils.BeanProcessor;
+
+import bean.ClienteBean;
+
+public class ClienteDAO implements IDAO<ClienteBean> {
+
+	private Connection con;
+
+	private PreparedStatement stmtCarregar;
+	private PreparedStatement stmtCarregarTodos;
+	private PreparedStatement stmtPesquisar;
+	private PreparedStatement stmtGravar;
+	private PreparedStatement stmtAtualizar;
+	private PreparedStatement stmtDeletar;
+
+	public ClienteDAO() throws Exception {
+		con = ConnectionFactory.getConnection();
+	}
+
+	@Override
+	public ClienteBean carregar(int id) throws Exception {
+		stmtCarregar = con.prepareStatement("SELECT * FROM cliente WHERE id = ?");
+		stmtCarregar.setInt(1, id);
+		ResultSet rs = stmtCarregar.executeQuery();
+		ClienteBean o = null;
+
+		if (rs.next()) {
+			BeanProcessor bp = new BeanProcessor();
+			o = bp.toBean(rs, ClienteBean.class);
+		}
+
+		rs.close();
+		return o;
+	}	
+
+
+	@Override
+	public List<ClienteBean> carregarTodos() throws Exception {
+		stmtCarregarTodos = con.prepareStatement("SELECT * FROM cliente");
+		ResultSet rs = stmtCarregarTodos.executeQuery();
+		BeanProcessor bp = new BeanProcessor();
+		List<ClienteBean> l = bp.toBeanList(rs, ClienteBean.class);
+		rs.close();
+		return l;
+	}
+
+	@Override
+	public List<ClienteBean> pesquisar(String texto, List<String> campos)
+			throws Exception {
+
+		String sql;
+
+		sql = "SELECT * FROM cliente WHERE ";
+
+		for (String campo : campos) {
+			sql += campo + " LIKE '%" + texto + "%'" + " OR ";
+		}
+
+		// Remove último AND
+		sql = sql.substring(0, sql.length() - 4);		
+		stmtPesquisar = con.prepareStatement(sql);
+		ResultSet rs = stmtPesquisar.executeQuery();
+
+		BeanProcessor bp = new BeanProcessor();
+		List<ClienteBean> l = bp.toBeanList(rs, ClienteBean.class);
+		rs.close();
+		return l;
+	}
+
+	@Override
+	public void gravar(ClienteBean obj, boolean update) throws Exception {
+		
+		if (!update){
+			System.out.println("Criando conta: " + obj.getEmail());
+			stmtGravar = con.prepareStatement("INSERT INTO cliente (nome, email, senha, cpf, cep, rua,cidade,estado, numero, telefone, data_criacao) VALUES (?,?,?,?,?,?,?,?,?,?,CURRENT_DATE())");
+			stmtGravar.setString(1, obj.getNome());
+			stmtGravar.setString(2, obj.getEmail());			
+			stmtGravar.setString(3, obj.getCpf());
+			stmtGravar.setString(4, obj.getCep());
+			stmtGravar.setString(5, obj.getRua());
+			stmtGravar.setString(6, obj.getCidade());
+			stmtGravar.setString(7, obj.getEstado());
+			stmtGravar.setString(8, obj.getNumero());
+			stmtGravar.setString(9, obj.getTelefone());
+	
+		
+			
+			stmtGravar.executeUpdate();
+			
+		} else {
+			System.out.println("Atualizando conta: " + obj.getEmail());
+			stmtAtualizar = con.prepareStatement("UPDATE cliente SET nome = ?, email = ?, cpf = ?,  cep = ?, rua = ?,cidade = ?,estado = ?, numero = ?, telefone = ? WHERE id = ?");
+			stmtGravar.setString(1, obj.getNome());
+			stmtGravar.setString(2, obj.getEmail());			
+			stmtGravar.setString(3, obj.getCpf());
+			stmtGravar.setString(4, obj.getCep());
+			stmtGravar.setString(5, obj.getRua());
+			stmtGravar.setString(6, obj.getCidade());
+			stmtGravar.setString(7, obj.getEstado());
+			stmtGravar.setString(8, obj.getNumero());
+			stmtGravar.setString(9, obj.getTelefone());
+			stmtAtualizar.setInt(10, obj.getId());
+			
+			stmtAtualizar.executeUpdate();					
+			
+		}
+
+	}
+
+	@Override
+	public int deletar(int id) throws Exception {
+		stmtDeletar = con.prepareStatement("DELETE FROM cliente WHERE id = ?");
+		stmtDeletar.setInt(1, id);
+		return stmtDeletar.executeUpdate();
+	}
+
+}

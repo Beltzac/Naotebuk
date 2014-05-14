@@ -4,6 +4,8 @@ package bean;
 
 import java.io.Serializable;
 
+import model.NivelAcesso;
+
 public class UsuarioBean implements Serializable {
 	
 	/**
@@ -14,7 +16,7 @@ public class UsuarioBean implements Serializable {
 	private String nome;
 	private String email;
 	private String senha;
-	private boolean gerente;
+	private NivelAcesso nivel;
 	
 	public UsuarioBean() {
 	}
@@ -50,19 +52,21 @@ public class UsuarioBean implements Serializable {
 	@Override
 	public String toString() {
 		return "UsuarioBean [id=" + id + ", nome=" + nome + ", email=" + email
-				+ ", senha=" + senha + ", gerente=" + gerente + "]";
+				+ ", senha=" + senha + ", nivel=" + nivel + "]";
 	}
 
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 
-	public boolean isGerente() {
-		return gerente;
+
+
+	public NivelAcesso getNivel() {
+		return nivel;
 	}
 
-	public void setGerente(boolean gerente) {
-		this.gerente = gerente;
+	public void setNivel(NivelAcesso nivel) {
+		this.nivel = nivel;
 	}
 	
 	

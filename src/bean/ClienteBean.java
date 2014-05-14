@@ -10,15 +10,16 @@ public class ClienteBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int id;
+	private String nome;
 	private String cpf;
 	private String dataNasc;
-	private boolean sexo;
 	private String rua;
-	private int num;
+	private String numero;
 	private String cep;
 	private String cidade;
 	private String estado;
 	private String email;
+	private String telefone;
 
 	public ClienteBean() {
 	}
@@ -47,14 +48,6 @@ public class ClienteBean implements Serializable {
 		this.dataNasc = dataNasc;
 	}
 
-	public boolean isSexo() {
-		return sexo;
-	}
-
-	public void setSexo(boolean sexo) {
-		this.sexo = sexo;
-	}
-
 	public String getRua() {
 		return rua;
 	}
@@ -63,12 +56,12 @@ public class ClienteBean implements Serializable {
 		this.rua = rua;
 	}
 
-	public int getNum() {
-		return num;
+	public String getNumero() {
+		return numero;
 	}
 
-	public void setNum(int num) {
-		this.num = num;
+	public void setNumero(String num) {
+		this.numero = num;
 	}
 
 	public String getCep() {
@@ -106,9 +99,25 @@ public class ClienteBean implements Serializable {
 	@Override
 	public String toString() {
 		return "ClienteBean [id=" + id + ", cpf=" + cpf + ", dataNasc="
-				+ dataNasc + ", sexo=" + sexo + ", rua=" + rua + ", num=" + num
+				+ dataNasc + ", rua=" + rua + ", num=" + numero
 				+ ", cep=" + cep + ", cidade=" + cidade + ", estado=" + estado
 				+ ", email=" + email + "]";
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 	
 	
