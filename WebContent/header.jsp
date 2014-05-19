@@ -16,7 +16,7 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="login_manager.jsp?logout=true"><i
+				<li><a href="Controladora?action=logout"><i
 						class="glyphicon glyphicon-lock"></i> Sair</a></li>
 			</ul>
 		</div>

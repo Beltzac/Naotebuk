@@ -79,21 +79,25 @@ public class ConsertoDAO implements IDAO<ConsertoBean> {
 
 	@Override
 	public void gravar(ConsertoBean obj, boolean update) throws Exception {
-		
-	
 	
 		
 		
 		if (!update){
 			System.out.println("Criando produto: " + obj.toString());
 			
-			stmtGravar = con.prepareStatement("INSERT INTO conserto (nome, categoria, preco, descricao, extencao, data_criacao) VALUES (?,?,?,?,?,CURRENT_DATE())",Statement.RETURN_GENERATED_KEYS);
+			stmtGravar = con.prepareStatement("INSERT INTO conserto (estado, cliente, nome, tipo, modelo, fabricante,descricao,observacao,valor,data_criacao) VALUES (?,?,?,?,?,CURRENT_DATE())",Statement.RETURN_GENERATED_KEYS);
 			
-			stmtGravar.setString(1, obj.getNome());
-			stmtGravar.setInt(2, obj.getCategoria());
-			stmtGravar.setDouble(3, obj.getPreco());
-			stmtGravar.setString(4, obj.getDescricao());
-			stmtGravar.setString(5, obj.getExtencao());			
+			stmtGravar.setString(1, obj.getEstado());
+			stmtGravar.setInt(2, obj.getCliente());
+			stmtGravar.setString(3, obj.getNome());
+			stmtGravar.setString(4, obj.getTipo());
+			stmtGravar.setString(5, obj.getModelo());
+			stmtGravar.setString(6, obj.getFabricante());			
+			stmtGravar.setString(7, obj.getDescricao());			
+			stmtGravar.setString(8, obj.getObservacao());			
+			stmtGravar.setDouble(9, obj.getValor());
+			
+			
 			
 			stmtGravar.executeUpdate();
 			
@@ -105,13 +109,18 @@ public class ConsertoDAO implements IDAO<ConsertoBean> {
 			
 		} else {
 			System.out.println("Atualizando produto: " + obj.toString());
-			stmtAtualizar = con.prepareStatement("UPDATE conserto SET nome = ?, categoria = ?, preco = ?, descricao = ?, extencao = ? WHERE id = ?");
-			stmtAtualizar.setString(1, obj.getNome());
-			stmtAtualizar.setInt(2, obj.getCategoria());
-			stmtAtualizar.setDouble(3, obj.getPreco());
-			stmtAtualizar.setString(4, obj.getDescricao());
-			stmtAtualizar.setString(5, obj.getExtencao());			
-			stmtAtualizar.setInt(6, obj.getId());
+			stmtAtualizar = con.prepareStatement("UPDATE conserto SET estado = ?, cliente= ?, nome= ?, tipo= ?, modelo= ?, fabricante= ?,descricao= ?,observacao= ?,valor = ? WHERE id = ?");
+			stmtGravar.setString(1, obj.getEstado());
+			stmtGravar.setInt(2, obj.getCliente());
+			stmtGravar.setString(3, obj.getNome());
+			stmtGravar.setString(4, obj.getTipo());
+			stmtGravar.setString(5, obj.getModelo());
+			stmtGravar.setString(6, obj.getFabricante());			
+			stmtGravar.setString(7, obj.getDescricao());			
+			stmtGravar.setString(8, obj.getObservacao());			
+			stmtGravar.setDouble(9, obj.getValor());
+			stmtGravar.setInt(10, obj.getId());
+			
 			
 			stmtAtualizar.executeUpdate();					
 			

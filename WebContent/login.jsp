@@ -43,7 +43,7 @@
 					<div class="col-md-7">
 						<h2>Login</h2>
 						<br>
-						<form id="login" method="post" action="login_manager.jsp" role="form">
+						<form id="login" method="post" action="Controladora?action=login" role="form">
 							<label>E-mail:</label> 
 							<input type="email" name="email" value="" class="form-control" required /> 
 							<br> 
