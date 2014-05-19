@@ -100,7 +100,7 @@ public class UsuarioDAO implements IDAO<UsuarioBean> {
 			stmtGravar.setString(1, obj.getNome());
 			stmtGravar.setString(2, obj.getEmail());
 			stmtGravar.setString(3, obj.getSenha());	
-			stmtGravar.setInt(4, obj.getNivel());	
+			stmtGravar.setString(4, obj.getNivel());	
 			
 			stmtGravar.executeUpdate();
 			
@@ -109,7 +109,7 @@ public class UsuarioDAO implements IDAO<UsuarioBean> {
 			stmtAtualizar = con.prepareStatement("UPDATE usuario SET nome = ?, email = ?, nivel = ? WHERE id = ?");
 			stmtGravar.setString(1, obj.getNome());
 			stmtGravar.setString(2, obj.getEmail());			
-			stmtGravar.setInt(4, obj.getNivel());	
+			stmtGravar.setString(4, obj.getNivel());	
 			
 			stmtAtualizar.executeUpdate();					
 			

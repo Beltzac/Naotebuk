@@ -2,9 +2,6 @@ package bean;
 
 import java.io.Serializable;
 
-import model.Estado;
-import model.TipoEquipamento;
-
 public class ConsertoBean implements Serializable {
 
 	/**
@@ -13,10 +10,10 @@ public class ConsertoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int id;
-	private Estado estado;
+	private String estado;
 	private int cliente;
 	private String nome;
-	private TipoEquipamento tipo;
+	private String tipo;
 	private String modelo;
 	private String fabricante;
 	private String descricao;
@@ -82,11 +79,11 @@ public class ConsertoBean implements Serializable {
 		this.valor = valor;
 	}
 
-	public Estado getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(Estado estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
@@ -98,11 +95,11 @@ public class ConsertoBean implements Serializable {
 		this.cliente = cliente;
 	}
 
-	public TipoEquipamento getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(TipoEquipamento tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
