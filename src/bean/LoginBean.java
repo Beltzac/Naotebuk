@@ -8,6 +8,17 @@ public class LoginBean {
 	private String senha;
 	private UsuarioBean usuario;
 	private boolean autenticado;
+	private boolean gerente;
+
+	public boolean isGerente() {
+		return gerente;
+	}
+
+
+	public void setGerente(boolean gerente) {
+		this.gerente = gerente;
+	}
+
 
 	public boolean autenticar() {
 		
@@ -17,7 +28,6 @@ public class LoginBean {
 				UsuarioDAO dao = new UsuarioDAO();
 				UsuarioBean alvo = dao.carregar(email,senha);
 				
-				System.out.println(alvo.toString());
 				
 				if (alvo != null){
 					usuario = alvo;
@@ -34,6 +44,14 @@ public class LoginBean {
 	}
 
 	
+	@Override
+	public String toString() {
+		return "LoginBean [email=" + email + ", senha=" + senha + ", usuario="
+				+ usuario + ", autenticado=" + autenticado + ", gerente="
+				+ gerente + "]";
+	}
+
+
 	public String getEmail() {
 		return email;
 	}

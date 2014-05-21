@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
 <jsp:useBean id="usuario" scope="session" class="bean.LoginBean" />
-<%	if (usuario.isAutenticado()) response.sendRedirect("listaPedidos.jsp"); %>
+<%	if (usuario.isAutenticado()) response.sendRedirect("Controladora?action=listaPedidos"); %>
 <!DOCTYPE html>
 <html>
 <head>

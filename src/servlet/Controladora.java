@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.lang.System;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -35,6 +36,7 @@ public class Controladora extends Servlet {
 
 		String action = request.getParameter("action");
 		String sub = request.getParameter("sub");
+		String teste = "Um tetst";
 
 		HttpSession session = request.getSession();
 
@@ -53,14 +55,16 @@ public class Controladora extends Servlet {
 		} else
 			switch (action) {
 			case "login":
-
 				loginBean = FormUtil.populate(LoginBean.class, request);
 
 				if (loginBean.autenticar()) {
 					System.out.println("Usuario logando:"
 							+ loginBean.getEmail());
 					session.setAttribute("loginBean", loginBean);
-					response.sendRedirect(request.getHeader("Referer"));
+					 //response.sendRedirect(request.getHeader("Referer"));
+					response.sendRedirect("Controladora?action=listaPedidos");
+					teste = loginBean.toString(); 
+					System.out.println(((LoginBean)session.getAttribute("loginBean")).toString());
 				} else {
 					paginaErro(request, response,
 							"Login e/ou senha incorretos", null);
@@ -78,10 +82,57 @@ public class Controladora extends Servlet {
 					}
 					session.invalidate();
 				}
-				response.sendRedirect("Controladora?action=index");
+				response.sendRedirect("Controladora?action=listaPedidos");
 
 				break;
+				
+			case "listaPedidos":
+				
+				forward(request, response, "/listaPedidos.jsp");
+				
+				break;
 		
+			case "loginPage":
+				
+				forward(request, response, "/login.jsp");
+				
+				break;
+			
+			case "pesquisaUsuario":
+				
+				forward(request, response, "/pesquisa.jsp");
+				
+				break;
+			
+			case "cadastroUsuario":
+				
+				forward(request, response, "/formCliente.jsp");
+				
+				break;
+				
+			case "cadastroCliente":
+	
+				forward(request, response, "/formCliente.jsp");
+				
+				break;
+			
+			case "cadastroPedido":
+				
+				forward(request, response, "/formPedido.jsp");
+				
+				break;
+			
+			case "pesquisaPedido":
+				
+				forward(request, response, "/busca.jsp");
+				
+				break;
+
+			case "pagamento":
+				
+				forward(request, response, "/pagamentoConserto.jsp");
+				
+				break;
 
 			default:
 				paginaErro(request, response, "Ação Inexistente", null);

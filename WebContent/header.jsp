@@ -1,8 +1,8 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:useBean id="usuario" scope="session" class="bean.LoginBean"/>
-
-<% 	
-	if(!usuario.isAutenticado()) response.sendRedirect("login.jsp");
-%>
+<c:if test="${!loginBean.autenticado}">
+	<c:redirect url="Controladora?action=loginPage"/>
+</c:if>
 
 <!-- Header -->
 <div id="top-nav" class="navbar navbar-inverse navbar-static-top">

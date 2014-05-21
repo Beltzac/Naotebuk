@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.NivelAcesso;
+//import model.NivelAcesso;
 import bean.LoginBean;
 
 public class Servlet extends HttpServlet {

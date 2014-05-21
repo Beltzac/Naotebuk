@@ -57,7 +57,7 @@
     <div class="col-md-9">
         <!-- Página aqui -->	
       <!-- column 2 -->	
-      <strong><i class="glyphicon glyphicon-dashboard"></i> Pesquisa de Pedido</strong>
+      <strong><i class="glyphicon glyphicon-dashboard"></i> Pesquisa de Usuário</strong>
 		<hr>
 			<div class="row">		
 				<table class="table table-bordered">
