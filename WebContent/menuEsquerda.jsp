@@ -19,10 +19,10 @@
             <ul class="list-unstyled collapse in" id="menu2">
             	<li><a href="Controladora?action=cadastroCliente"><i class="glyphicon glyphicon-arrow-right"></i> Cadastro Cliente</a></li>
                 <li><a href="Controladora?action=cadastroPedido"><i class="glyphicon glyphicon-arrow-right"></i> Novo Pedido</a></li>                
-                <li><a href="Controladora?action=listaPedidos"><i class="glyphicon glyphicon-arrow-right"></i> Em aberto</a></li>
-				<li><a href="Controladora?action=listaPedidos"><i class="glyphicon glyphicon-arrow-right"></i> Atrasados</a></li>
-                <li><a href="Controladora?action=listaPedidos"><i class="glyphicon glyphicon-arrow-right"></i> Prontos</a></li>            
-				<li><a href="Controladora?action=listaPedidos"><i class="glyphicon glyphicon-arrow-right"></i> Todos</a></li>	
+                <li><a href="Controladora?action=emAberto"><i class="glyphicon glyphicon-arrow-right"></i> Em aberto</a></li>
+				<li><a href="Controladora?action=atrasados"><i class="glyphicon glyphicon-arrow-right"></i> Atrasados</a></li>
+                <li><a href="Controladora?action=prontos"><i class="glyphicon glyphicon-arrow-right"></i> Prontos</a></li>            
+				<li><a href="Controladora?action=listarTodos"><i class="glyphicon glyphicon-arrow-right"></i> Todos</a></li>	
 				<li><a href="Controladora?action=pesquisaPedido"><i class="glyphicon glyphicon-arrow-right"></i> Busca</a></li>
 				<li><a href="Controladora?action=pagamento"><i class="glyphicon glyphicon-arrow-right"></i> Pagamento</a></li>
             </ul>

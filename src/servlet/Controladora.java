@@ -134,8 +134,32 @@ public class Controladora extends Servlet {
 				
 				break;
 
+			case "emAberto":
+				
+				forward(request, response, "/listaPedidos.jsp");
+				
+				break;
+
+			case "atrasados":
+	
+				forward(request, response, "/listaPedidos.jsp");
+	
+				break;
+
+			case "prontos":
+	
+				forward(request, response, "/listaPedidos.jsp");
+	
+				break;
+
+			case "listarTodos":
+	
+				forward(request, response, "/listaPedidos.jsp");
+	
+				break;
+
 			default:
-				paginaErro(request, response, "AÃ§Ã£o Inexistente", null);
+				paginaErro(request, response, "Açãoo Inexistente", null);
 				break;
 			}
 

@@ -58,8 +58,7 @@ public class Servlet extends HttpServlet {
 		if (!filtroLogado(request, response)) {
 			return false;
 		}
-		if (loginBean == null || loginBean.getUsuario() == null
-				|| loginBean.getUsuario().getNivel() != NivelAcesso.GERENTE ) {
+		if (loginBean == null || loginBean.getUsuario() == null ) {
 			paginaErro(request, response,
 					"Sua conta não possui os privilégios necessarios.", null);
 			return false;
