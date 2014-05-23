@@ -1,6 +1,7 @@
 package bean;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 
 public class ClienteBean implements Serializable {
 
@@ -20,6 +21,24 @@ public class ClienteBean implements Serializable {
 	private String estado;
 	private String email;
 	private String telefone;
+	private boolean sexo;
+
+	@Override
+	public String toString() {
+		return "ClienteBean [id=" + id + ", nome=" + nome + ", cpf=" + cpf
+				+ ", dataNasc=" + dataNasc + ", rua=" + rua + ", numero="
+				+ numero + ", cep=" + cep + ", cidade=" + cidade + ", estado="
+				+ estado + ", email=" + email + ", telefone=" + telefone
+				+ ", sexo=" + sexo + "]";
+	}
+
+	public boolean isSexo() {
+		return sexo;
+	}
+
+	public void setSexo(boolean sexo) {
+		this.sexo = sexo;
+	}
 
 	public ClienteBean() {
 	}
@@ -94,14 +113,6 @@ public class ClienteBean implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	@Override
-	public String toString() {
-		return "ClienteBean [id=" + id + ", cpf=" + cpf + ", dataNasc="
-				+ dataNasc + ", rua=" + rua + ", num=" + numero
-				+ ", cep=" + cep + ", cidade=" + cidade + ", estado=" + estado
-				+ ", email=" + email + "]";
 	}
 
 	public String getNome() {

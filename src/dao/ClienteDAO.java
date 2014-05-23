@@ -79,7 +79,7 @@ public class ClienteDAO implements IDAO<ClienteBean> {
 		
 		if (!update){
 			System.out.println("Criando conta: " + obj.getEmail());
-			stmtGravar = con.prepareStatement("INSERT INTO cliente (nome, email, senha, cpf, cep, rua,cidade,estado, numero, telefone, data_criacao) VALUES (?,?,?,?,?,?,?,?,?,?,CURRENT_DATE())");
+			stmtGravar = con.prepareStatement("INSERT INTO cliente (nome, email, cpf, cep, rua, cidade, estado, num, sexo, dataNasc, data_criacao) VALUES (?,?,?,?,?,?,?,?,?,?,CURRENT_DATE())");
 			stmtGravar.setString(1, obj.getNome());
 			stmtGravar.setString(2, obj.getEmail());			
 			stmtGravar.setString(3, obj.getCpf());
@@ -88,7 +88,8 @@ public class ClienteDAO implements IDAO<ClienteBean> {
 			stmtGravar.setString(6, obj.getCidade());
 			stmtGravar.setString(7, obj.getEstado());
 			stmtGravar.setString(8, obj.getNumero());
-			stmtGravar.setString(9, obj.getTelefone());
+			stmtGravar.setBoolean(9, obj.isSexo());
+			stmtGravar.setString(10, obj.getDataNasc());
 	
 		
 			

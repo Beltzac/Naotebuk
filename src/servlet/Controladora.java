@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import util.FormUtil;
+import bean.ClienteBean;
 import bean.LoginBean;
 import bean.UsuarioBean;
+import dao.ClienteDAO;
 import dao.ConsertoDAO;
 import dao.UsuarioDAO;
 
@@ -44,6 +46,7 @@ public class Controladora extends Servlet {
 
 		UsuarioDAO usuarioDAO = null;
 		ConsertoDAO produtoDAO = null;
+		ClienteDAO clienteDAO = null;
 
 		String path = getServletContext().getRealPath("/");
 
@@ -182,6 +185,34 @@ public class Controladora extends Servlet {
 				}
 
 				response.sendRedirect("Controladora?action=cadastroUsuario");
+	
+				break;
+				
+			case "novoCliente":
+				
+				clienteDAO = null;
+				try {
+					clienteDAO = new ClienteDAO();
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (Cliente)", e.getMessage());
+					return;
+				}
+
+				ClienteBean cliente = FormUtil.populate(ClienteBean.class,
+						request);
+
+				try {
+					clienteDAO.gravar(cliente, false);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao cadastrar um novo cliente", e1.getMessage());
+					return;
+				}
+
+				response.sendRedirect("Controladora?action=cadastroCliente");
 	
 				break;
 
