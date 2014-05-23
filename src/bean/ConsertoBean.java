@@ -10,15 +10,24 @@ public class ConsertoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int id;
-	private String estado;
-	private int cliente;
+	private int estado_id;
+	private int cliente_id;
 	private String nome;
-	private String tipo;
+	private boolean tipo;
 	private String modelo;
 	private String fabricante;
 	private String descricao;
 	private String observacao;
 	private double valor;
+	private String previsao;
+
+	public String getPrevisao() {
+		return previsao;
+	}
+
+	public void setPrevisao(String previsao) {
+		this.previsao = previsao;
+	}
 
 	public ConsertoBean() {
 	}
@@ -79,37 +88,40 @@ public class ConsertoBean implements Serializable {
 		this.valor = valor;
 	}
 
-	public String getEstado() {
-		return estado;
+	public int getEstado_id() {
+		return estado_id;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setEstado_id(int estado_id) {
+		this.estado_id = estado_id;
 	}
 
-	public int getCliente() {
-		return cliente;
+	public int getCliente_id() {
+		return cliente_id;
 	}
 
-	public void setCliente(int cliente) {
-		this.cliente = cliente;
+	public void setCliente_id(int cliente_id) {
+		this.cliente_id = cliente_id;
 	}
 
-	public String getTipo() {
+	public boolean isTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(boolean tipo) {
 		this.tipo = tipo;
 	}
 
 	@Override
 	public String toString() {
-		return "ConsertoBean [id=" + id + ", estado=" + estado + ", cliente="
-				+ cliente + ", nome=" + nome + ", tipo=" + tipo + ", modelo="
-				+ modelo + ", fabricante=" + fabricante + ", descricao="
-				+ descricao + ", observacao=" + observacao + ", valor=" + valor
-				+ "]";
-	}	
+		return "ConsertoBean [id=" + id + ", estado_id=" + estado_id
+				+ ", cliente_id=" + cliente_id + ", nome=" + nome + ", tipo="
+				+ tipo + ", modelo=" + modelo + ", fabricante=" + fabricante
+				+ ", descricao=" + descricao + ", observacao=" + observacao
+				+ ", valor=" + valor + ", previsao=" + previsao + "]";
+	}
+
+
+	
 
 }

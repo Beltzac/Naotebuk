@@ -1,7 +1,6 @@
 package bean;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 
 public class ClienteBean implements Serializable {
 

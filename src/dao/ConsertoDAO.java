@@ -3,6 +3,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.dbutils.BeanProcessor;
@@ -84,18 +86,22 @@ public class ConsertoDAO implements IDAO<ConsertoBean> {
 		
 		if (!update){
 			System.out.println("Criando produto: " + obj.toString());
+			SimpleDateFormat from = new SimpleDateFormat("dd/MM/yyyy");
+			SimpleDateFormat to = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = from.parse(obj.getPrevisao());       
+			String sqldate = to.format(date);
+			stmtGravar = con.prepareStatement("INSERT INTO conserto (estado_id, cliente_id, nome, tipo, modelo, fabricante,descricao,observacao,valor, previsao,data_criacao) VALUES (?,?,?,?,?,?,?,?,?,?,CURRENT_DATE())",Statement.RETURN_GENERATED_KEYS);
 			
-			stmtGravar = con.prepareStatement("INSERT INTO conserto (estado, cliente, nome, tipo, modelo, fabricante,descricao,observacao,valor,data_criacao) VALUES (?,?,?,?,?,CURRENT_DATE())",Statement.RETURN_GENERATED_KEYS);
-			
-			stmtGravar.setString(1, obj.getEstado());
-			stmtGravar.setInt(2, obj.getCliente());
+			stmtGravar.setInt(1, obj.getEstado_id());
+			stmtGravar.setInt(2, obj.getCliente_id());
 			stmtGravar.setString(3, obj.getNome());
-			stmtGravar.setString(4, obj.getTipo());
+			stmtGravar.setBoolean(4, obj.isTipo());
 			stmtGravar.setString(5, obj.getModelo());
 			stmtGravar.setString(6, obj.getFabricante());			
 			stmtGravar.setString(7, obj.getDescricao());			
 			stmtGravar.setString(8, obj.getObservacao());			
 			stmtGravar.setDouble(9, obj.getValor());
+			stmtGravar.setString(10, sqldate);
 			
 			
 			
@@ -110,10 +116,10 @@ public class ConsertoDAO implements IDAO<ConsertoBean> {
 		} else {
 			System.out.println("Atualizando produto: " + obj.toString());
 			stmtAtualizar = con.prepareStatement("UPDATE conserto SET estado = ?, cliente= ?, nome= ?, tipo= ?, modelo= ?, fabricante= ?,descricao= ?,observacao= ?,valor = ? WHERE id = ?");
-			stmtGravar.setString(1, obj.getEstado());
-			stmtGravar.setInt(2, obj.getCliente());
+			stmtGravar.setInt(1, obj.getEstado_id());
+			stmtGravar.setInt(2, obj.getCliente_id());
 			stmtGravar.setString(3, obj.getNome());
-			stmtGravar.setString(4, obj.getTipo());
+			stmtGravar.setBoolean(4, obj.isTipo());
 			stmtGravar.setString(5, obj.getModelo());
 			stmtGravar.setString(6, obj.getFabricante());			
 			stmtGravar.setString(7, obj.getDescricao());			

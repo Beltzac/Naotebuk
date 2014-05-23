@@ -88,7 +88,15 @@
 						</div>
 						<div class="form-group">
 							<label>Preço</label>
-							<input type="text" class="form-control"	name="preco" value="" required>
+							<input type="text" class="form-control"	name="valor" value="" required>
+						</div>
+						<div class="form-group">
+							<label>Estado</label> 
+							<select class="form-control"  name="estado_id">
+										<c:forEach items="${listaEstados}" var="item"  varStatus="cont">      
+	        	                            <option value="${item.id}">${item.nome}</option>  
+    	    							 </c:forEach>
+							</select>
 						</div>
 						<br>
 						<button type="submit" value="" class="btn btn-primary" >

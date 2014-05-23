@@ -14,10 +14,13 @@ import javax.servlet.http.HttpSession;
 
 import util.FormUtil;
 import bean.ClienteBean;
+import bean.ConsertoBean;
+import bean.EstadoBean;
 import bean.LoginBean;
 import bean.UsuarioBean;
 import dao.ClienteDAO;
 import dao.ConsertoDAO;
+import dao.EstadoDAO;
 import dao.UsuarioDAO;
 
 /**
@@ -46,7 +49,7 @@ public class Controladora extends Servlet {
 		LoginBean loginBean;
 
 		UsuarioDAO usuarioDAO = null;
-		ConsertoDAO produtoDAO = null;
+		ConsertoDAO consertoDAO = null;
 		ClienteDAO clienteDAO = null;
 
 		String path = getServletContext().getRealPath("/");
@@ -223,7 +226,28 @@ public class Controladora extends Servlet {
 				
 			case "novoPedido":
 				
-				forward(request, response, "/listaPedidos.jsp");
+				consertoDAO = null;
+				try {
+					consertoDAO = new ConsertoDAO();
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (Conserto)", e.getMessage());
+					return;
+				}
+				ConsertoBean conserto = FormUtil.populate(ConsertoBean.class,
+						request);
+
+				try {
+					consertoDAO.gravar(conserto, false);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao cadastrar um novo conserto", e1.getMessage());
+					return;
+				}
+
+				response.sendRedirect("Controladora?action=cadastroPedido");
 	
 				break;
 
@@ -269,6 +293,27 @@ public class Controladora extends Servlet {
 		}
 
 		request.setAttribute("listaClientes", listaClientes);
+		
+		EstadoDAO estadoDAO = null;
+		try {
+			estadoDAO = new EstadoDAO();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+			paginaErro(request, response, "Erro ao processar (Estados)",
+					e1.getMessage());
+			return;
+		}
+		List<EstadoBean> listaEstados = null;
+		try {
+			listaEstados = estadoDAO.carregarTodos();
+		} catch (Exception e) {
+			e.printStackTrace();
+			paginaErro(request, response,
+					"Erro ao carregar lista de estados", e.getMessage());
+			return;
+		}
+
+		request.setAttribute("listaEstados", listaEstados);
 
 	}
 }
