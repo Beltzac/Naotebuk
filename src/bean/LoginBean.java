@@ -32,6 +32,7 @@ public class LoginBean {
 				if (alvo != null){
 					usuario = alvo;
 					autenticado = true;
+					gerente = alvo.isGerente();
 					return true;		
 				}
 				

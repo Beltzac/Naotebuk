@@ -54,7 +54,7 @@ public class Controladora extends Servlet {
 		
 
 		if (action == null) {
-			response.sendRedirect("Controladora?action=index");
+			response.sendRedirect("Controladora?action=listaPedidos");
 		} else
 			switch (action) {
 			case "login":
@@ -63,10 +63,15 @@ public class Controladora extends Servlet {
 				if (loginBean.autenticar()) {
 					System.out.println("Usuario logando:"
 							+ loginBean.getEmail());
+					
 					session.setAttribute("loginBean", loginBean);
-					 //response.sendRedirect(request.getHeader("Referer"));
-					response.sendRedirect("Controladora?action=listaPedidos");
 					System.out.println(((LoginBean)session.getAttribute("loginBean")).toString());
+					 //response.sendRedirect(request.getHeader("Referer"));
+					if(loginBean.isGerente()){
+						response.sendRedirect("Controladora?action=cadastroUsuario");
+					}else{
+						response.sendRedirect("Controladora?action=listaPedidos");
+					}
 				} else {
 					paginaErro(request, response,
 							"Login e/ou senha incorretos", null);
@@ -199,7 +204,6 @@ public class Controladora extends Servlet {
 							"Erro ao processar (Cliente)", e.getMessage());
 					return;
 				}
-
 				ClienteBean cliente = FormUtil.populate(ClienteBean.class,
 						request);
 

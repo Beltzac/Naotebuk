@@ -3,6 +3,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.dbutils.BeanProcessor;
@@ -78,6 +80,10 @@ public class ClienteDAO implements IDAO<ClienteBean> {
 	public void gravar(ClienteBean obj, boolean update) throws Exception {
 		
 		if (!update){
+			SimpleDateFormat from = new SimpleDateFormat("dd/MM/yyyy");
+			SimpleDateFormat to = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = from.parse(obj.getDataNasc());       
+			String sqldate = to.format(date);     
 			System.out.println("Criando conta: " + obj.getEmail());
 			stmtGravar = con.prepareStatement("INSERT INTO cliente (nome, email, cpf, cep, rua, cidade, estado, num, sexo, dataNasc, data_criacao) VALUES (?,?,?,?,?,?,?,?,?,?,CURRENT_DATE())");
 			stmtGravar.setString(1, obj.getNome());
@@ -89,7 +95,7 @@ public class ClienteDAO implements IDAO<ClienteBean> {
 			stmtGravar.setString(7, obj.getEstado());
 			stmtGravar.setString(8, obj.getNumero());
 			stmtGravar.setBoolean(9, obj.isSexo());
-			stmtGravar.setString(10, obj.getDataNasc());
+			stmtGravar.setString(10, sqldate);
 	
 		
 			
