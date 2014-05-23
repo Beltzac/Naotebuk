@@ -25,11 +25,11 @@
 			});
 		});
 	</script>
-	<script>
+	<!--<script>
 		jQuery(function($){
 			$("#price").mask("R$ 9999,99");
 		});
-	</script>
+	</script>-->
   </head>
 
 <body>
@@ -50,40 +50,45 @@
 					Cadastro de Conserto</strong>
 				<hr>
 				<div class="row">
-					<form role="form">
+					<form role="form" method="POST" action="Controladora?action=novoPedido">
 						<div class="form-group">
 							<label>Cliente</label> 
-							<input type="text" class="form-control" name="" value="" id="" required>
+							<!-- <input type="text" class="form-control" name="cliente_id" value="" id="" required> -->
+							<select class="form-control"  name="cliente_id">
+										<c:forEach items="${listaClientes}" var="item"  varStatus="cont">      
+	        	                            <option value="${item.id}">${item.nome}</option>  
+    	    							 </c:forEach>
+							</select>
 						</div>
 						<div class="form-group">
 							<label>Nome do Produto</label> 
-							<input type="text" class="form-control" name="" value="" id="" required>
+							<input type="text" class="form-control" name="nome" value="" id="" required>
 						</div>
 						<div class="form-group">
 							<label>Modelo do Produto</label> 
-							<input type="text" class="form-control" name="" value="" id="" required>
+							<input type="text" class="form-control" name="modelo" value="" id="" required>
 						</div>
 						<label>Tipo do Produto</label>
 						<div class="radio">
-							<label><input type="radio" name="sexo" value="m" id="">	Desktop</label>
+							<label><input type="radio" name="tipo" value="0" id="">	Desktop</label>
 						</div>
 						<div class="radio">
-							<label><input type="radio" name="sexo" value="f" id="">	Notebook</label>
+							<label><input type="radio" name="tipo" value="1" id="">	Notebook</label>
 						</div>
 						<div class="form-group">
-							<label>Fabricante</label> <input type="text" class="form-control" name="" value="" id="" required>
+							<label>Fabricante</label> <input type="text" class="form-control" name="fabricante" value="" id="" required>
 						</div>
 						<div class="form-group">
 							<label>Problema</label>
-							<textarea class="form-control" rows="5"></textarea>
+							<textarea class="form-control" rows="5" name="descricao"></textarea>
 						</div>
 						<div class="form-group">
-							<label>Data</label> 
-							<input type="text" class="form-control" name="" value="" id="datepicker" required>
+							<label>Previsão de Entrega</label> 
+							<input type="text" class="form-control" name="previsao" value="" id="datepicker" required>
 						</div>
 						<div class="form-group">
 							<label>Preço</label>
-							<input type="text" class="form-control"	name="" value="" id="price" required>
+							<input type="text" class="form-control"	name="preco" value="" required>
 						</div>
 						<br>
 						<button type="submit" value="" class="btn btn-primary" >

@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.lang.System;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -50,8 +51,8 @@ public class Controladora extends Servlet {
 
 		String path = getServletContext().getRealPath("/");
 
-		// carrega categorias, etc
-		
+		// carrega 
+		carregarObjetosComuns(request, response);
 
 		if (action == null) {
 			response.sendRedirect("Controladora?action=listaPedidos");
@@ -219,6 +220,12 @@ public class Controladora extends Servlet {
 				response.sendRedirect("Controladora?action=cadastroCliente");
 	
 				break;
+				
+			case "novoPedido":
+				
+				forward(request, response, "/listaPedidos.jsp");
+	
+				break;
 
 			default:
 				paginaErro(request, response, "Açãoo Inexistente", null);
@@ -237,5 +244,31 @@ public class Controladora extends Servlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
+	}
+	
+	private void carregarObjetosComuns(HttpServletRequest request,
+			HttpServletResponse response) {
+
+		ClienteDAO clienteDAO = null;
+		try {
+			clienteDAO = new ClienteDAO();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+			paginaErro(request, response, "Erro ao processar (Cliente)",
+					e1.getMessage());
+			return;
+		}
+		List<ClienteBean> listaClientes = null;
+		try {
+			listaClientes = clienteDAO.carregarTodos();
+		} catch (Exception e) {
+			e.printStackTrace();
+			paginaErro(request, response,
+					"Erro ao carregar lista de clientes", e.getMessage());
+			return;
+		}
+
+		request.setAttribute("listaClientes", listaClientes);
+
 	}
 }
