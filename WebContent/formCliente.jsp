@@ -52,40 +52,40 @@
 					Cadastro de Cliente</strong>
 				<hr>
 				<div class="row">
-					<form role="form">
+					<form role="form" method="POST" action="Controladora?action=novoCliente">
 						<div class="form-group">
-							<label>Nome</label> <input type="text" class="form-control" name="" value="" id="" required>
+							<label>Nome</label> <input type="text" class="form-control" name="nome" value="" id="" required>
 						</div>
 						<div class="form-group">
-							<label>CPF</label> <input type="text" class="form-control" name="" value="" id="CPF" required>
+							<label>CPF</label> <input type="text" class="form-control" name="cpf" value="" id="CPF" required>
 						</div>
 						<div class="form-group">
-							<label>Data de Nascimento</label> <input type="text" class="form-control" id="datepicker" required>
+							<label>Data de Nascimento</label> <input type="text" class="form-control" id="datepicker" name="dataNasc" required>
 						</div>
 						<label>Sexo</label>
 						<div class="radio">
-							<label><input type="radio" name="sexo" value="m" id="">	Masculino</label>
+							<label><input type="radio" name="sexo" value="1" id="">	Masculino</label>
 						</div>
 						<div class="radio">
-							<label><input type="radio" name="sexo" value="f" id="">	Feminino</label>
+							<label><input type="radio" name="sexo" value="0" id="">	Feminino</label>
 						</div>
 						<div class="form-group">
 							<label>Endereço</label> 
 							<input type="text" class="form-control"
-								name="" value="" id="" required>
+								name="rua" value="" id="" required>
 						</div>
 						<div class="form-group">
 							<label>Número</label> 
 							<input type="text" class="form-control"
-								name="" value="" id="" required>
+								name="num" value="" id="" required>
 						</div>
 						<div class="form-group">
 							<label>Cidade</label> 
 							<input type="text" class="form-control"
-								name="" value="" id="" required>
+								name="cidade" value="" id="" required>
 						</div>
 						<div class="form-group">
-							<label>Estado</label> <select name="Estados" class="form-control">								
+							<label>Estado</label> <select name="estado" class="form-control">								
 								<option value="pr">Paraná</option>
 								<option value="ac">Acre</option>
 								<option value="al">Alagoas</option>
@@ -117,7 +117,7 @@
 						</div>
 						<div class="form-group">
 							<label>E-mail</label> <input type="email" class="form-control"
-								name="" value="" id="" required>
+								name="email" value="" id="" required>
 						</div>
 						<br>
 						<button type="submit" value="" class="btn btn-primary" >

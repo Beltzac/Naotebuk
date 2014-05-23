@@ -14,7 +14,25 @@ public class UsuarioBean implements Serializable {
 	private String nome;
 	private String email;
 	private String senha;
-	private String nivel;
+	private String matricula;
+	
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
+	public boolean isGerente() {
+		return gerente;
+	}
+
+	public void setGerente(boolean gerente) {
+		this.gerente = gerente;
+	}
+
+	private boolean gerente;
 	
 	public UsuarioBean() {
 	}
@@ -47,25 +65,19 @@ public class UsuarioBean implements Serializable {
 		return senha;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "UsuarioBean [id=" + id + ", nome=" + nome + ", email=" + email
-				+ ", senha=" + senha + ", nivel=" + nivel + "]";
+				+ ", senha=" + senha + ", matricula=" + matricula
+				+ ", gerente=" + gerente + "]";
 	}
 
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 
-
-
-	public String getNivel() {
-		return nivel;
-	}
-
-	public void setNivel(String nivel) {
-		this.nivel = nivel;
-	}
 	
 	
 

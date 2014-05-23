@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import util.FormUtil;
 import bean.LoginBean;
+import bean.UsuarioBean;
 import dao.ConsertoDAO;
 import dao.UsuarioDAO;
 
@@ -36,7 +37,6 @@ public class Controladora extends Servlet {
 
 		String action = request.getParameter("action");
 		String sub = request.getParameter("sub");
-		String teste = "Um tetst";
 
 		HttpSession session = request.getSession();
 
@@ -63,7 +63,6 @@ public class Controladora extends Servlet {
 					session.setAttribute("loginBean", loginBean);
 					 //response.sendRedirect(request.getHeader("Referer"));
 					response.sendRedirect("Controladora?action=listaPedidos");
-					teste = loginBean.toString(); 
 					System.out.println(((LoginBean)session.getAttribute("loginBean")).toString());
 				} else {
 					paginaErro(request, response,
@@ -106,7 +105,7 @@ public class Controladora extends Servlet {
 			
 			case "cadastroUsuario":
 				
-				forward(request, response, "/formCliente.jsp");
+				forward(request, response, "/formUsuario.jsp");
 				
 				break;
 				
@@ -155,6 +154,34 @@ public class Controladora extends Servlet {
 			case "listarTodos":
 	
 				forward(request, response, "/listaPedidos.jsp");
+	
+				break;
+				
+			case "novoUsuario":
+				
+				usuarioDAO = null;
+				try {
+					usuarioDAO = new UsuarioDAO();
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (Usuário)", e.getMessage());
+					return;
+				}
+
+				UsuarioBean usuario = FormUtil.populate(UsuarioBean.class,
+						request);
+
+				try {
+					usuarioDAO.gravar(usuario, false);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao cadastrar sua conta", e1.getMessage());
+					return;
+				}
+
+				response.sendRedirect("Controladora?action=cadastroUsuario");
 	
 				break;
 

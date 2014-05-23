@@ -33,7 +33,7 @@ public class Servlet extends HttpServlet {
 			HttpServletResponse response, String mensagem, String stacktrace) {
 		request.setAttribute("mensagem", mensagem);
 		request.setAttribute("stacktrace", stacktrace);
-		request.setAttribute("voltar", "Controladora?action=index");
+		request.setAttribute("voltar", "Controladora?action=emAberto");
 		forward(request, response, "/erro.jsp");
 	}
 
