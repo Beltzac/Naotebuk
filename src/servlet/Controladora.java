@@ -147,23 +147,112 @@ public class Controladora extends Servlet {
 
 			case "emAberto":
 				
-				forward(request, response, "/listaPedidos.jsp");
+				consertoDAO = null;
+				try {
+					consertoDAO = new ConsertoDAO();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (Conserto)", e1.getMessage());
+					return;
+				}
+
+				List<ConsertoBean> listaEmAberto = null;
+				try {
+					listaEmAberto = consertoDAO.carregarEmAberto();
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response, "Erro ao listar consertos",
+							e.getMessage());
+					return;
+				}
+
+				request.setAttribute("listaEmAberto", listaEmAberto);
+				
+				forward(request, response, "/listaEmAberto.jsp");
 				
 				break;
 
 			case "atrasados":
+				
+				consertoDAO = null;
+				try {
+					consertoDAO = new ConsertoDAO();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (Conserto)", e1.getMessage());
+					return;
+				}
+
+				List<ConsertoBean> listaAtrasados = null;
+				try {
+					listaAtrasados = consertoDAO.carregarAtrasados();
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response, "Erro ao listar consertos",
+							e.getMessage());
+					return;
+				}
+
+				request.setAttribute("listaAtrasados", listaAtrasados);
 	
-				forward(request, response, "/listaPedidos.jsp");
+				forward(request, response, "/listaAtrasados.jsp");
 	
 				break;
 
 			case "prontos":
+				
+				consertoDAO = null;
+				try {
+					consertoDAO = new ConsertoDAO();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (Conserto)", e1.getMessage());
+					return;
+				}
+
+				List<ConsertoBean> listaProntos = null;
+				try {
+					listaProntos = consertoDAO.carregarProntos();
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response, "Erro ao listar consertos",
+							e.getMessage());
+					return;
+				}
+
+				request.setAttribute("listaProntos", listaProntos);
 	
-				forward(request, response, "/listaPedidos.jsp");
+	
+				forward(request, response, "/listaProntos.jsp");
 	
 				break;
 
 			case "listarTodos":
+				
+				consertoDAO = null;
+				try {
+					consertoDAO = new ConsertoDAO();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (Conserto)", e1.getMessage());
+					return;
+				}
+
+				List<ConsertoBean> listaTodos = null;
+				try {
+					listaTodos = consertoDAO.carregarTodos();
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response, "Erro ao listar consertos",
+							e.getMessage());
+					return;
+				}
+
+				request.setAttribute("listaTodos", listaTodos);
 	
 				forward(request, response, "/listaPedidos.jsp");
 	

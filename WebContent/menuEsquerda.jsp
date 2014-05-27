@@ -24,7 +24,7 @@
                 <li><a href="Controladora?action=prontos"><i class="glyphicon glyphicon-arrow-right"></i> Prontos</a></li>            
 				<li><a href="Controladora?action=listarTodos"><i class="glyphicon glyphicon-arrow-right"></i> Todos</a></li>	
 				<li><a href="Controladora?action=pesquisaPedido"><i class="glyphicon glyphicon-arrow-right"></i> Busca</a></li>
-				<li><a href="Controladora?action=pagamento"><i class="glyphicon glyphicon-arrow-right"></i> Pagamento</a></li>
+				<li><a href="Controladora?action=pagamento"><i class="glyphicon glyphicon-arrow-right"></i> Relatórios</a></li>
             </ul>
         </li>
       </ul>   

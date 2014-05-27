@@ -54,6 +54,54 @@ public class ConsertoDAO implements IDAO<ConsertoBean> {
 		rs.close();
 		return l;
 	}
+	
+
+	public List<ConsertoBean> carregarEmAberto() throws Exception {
+		stmtCarregarTodos = con.prepareStatement("SELECT * FROM conserto where estado_id = 1");
+		ResultSet rs = stmtCarregarTodos.executeQuery();
+		BeanProcessor bp = new BeanProcessor();
+		List<ConsertoBean> l = bp.toBeanList(rs, ConsertoBean.class);
+		rs.close();
+		return l;
+	}
+	
+
+	public List<ConsertoBean> carregarAtrasados() throws Exception {
+		stmtCarregarTodos = con.prepareStatement("SELECT * FROM conserto where estado_id = 2");
+		ResultSet rs = stmtCarregarTodos.executeQuery();
+		BeanProcessor bp = new BeanProcessor();
+		List<ConsertoBean> l = bp.toBeanList(rs, ConsertoBean.class);
+		rs.close();
+		return l;
+	}
+	
+
+	public List<ConsertoBean> carregarProntos() throws Exception {
+		stmtCarregarTodos = con.prepareStatement("SELECT * FROM conserto where estado_id = 3");
+		ResultSet rs = stmtCarregarTodos.executeQuery();
+		BeanProcessor bp = new BeanProcessor();
+		List<ConsertoBean> l = bp.toBeanList(rs, ConsertoBean.class);
+		rs.close();
+		return l;
+	}
+	
+	public List<ConsertoBean> carregarPagos() throws Exception {
+		stmtCarregarTodos = con.prepareStatement("SELECT * FROM conserto where estado_id = 4");
+		ResultSet rs = stmtCarregarTodos.executeQuery();
+		BeanProcessor bp = new BeanProcessor();
+		List<ConsertoBean> l = bp.toBeanList(rs, ConsertoBean.class);
+		rs.close();
+		return l;
+	}
+	
+	public List<ConsertoBean> carregarFinalizados() throws Exception {
+		stmtCarregarTodos = con.prepareStatement("SELECT * FROM conserto where estado_id = 5");
+		ResultSet rs = stmtCarregarTodos.executeQuery();
+		BeanProcessor bp = new BeanProcessor();
+		List<ConsertoBean> l = bp.toBeanList(rs, ConsertoBean.class);
+		rs.close();
+		return l;
+	}
 
 	@Override
 	public List<ConsertoBean> pesquisar(String texto,  List<String> campos)
