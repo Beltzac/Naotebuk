@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.lang.System;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -339,9 +340,49 @@ public class Controladora extends Servlet {
 				response.sendRedirect("Controladora?action=cadastroPedido");
 	
 				break;
+			
+			case "searchUsuario":
+				
+				usuarioDAO = null;
+				try {
+					usuarioDAO = new UsuarioDAO();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (Usuário)", e1.getMessage());
+					return;
+				}
+
+				List<UsuarioBean> listaUsuarios = null;
+				List<String> campos = new ArrayList<>();
+				campos.add("nome");
+				campos.add("email");
+				campos.add("matricula");
+
+				try {
+
+					String pesquisa2 = request.getParameter("pesquisa");
+
+					if (pesquisa2 != null && pesquisa2.length() > 0)
+						listaUsuarios = usuarioDAO.pesquisar(pesquisa2, campos);
+					else
+						listaUsuarios = usuarioDAO.carregarTodos();
+
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response, "Erro ao pesquisar usuários",
+							e.getMessage());
+					return;
+				}
+
+				request.setAttribute("listaUsuarios", listaUsuarios);
+				System.out.print(listaUsuarios);
+				forward(request, response, "/listaUsers.jsp");
+				
+				break;
 
 			default:
-				paginaErro(request, response, "Açãoo Inexistente", null);
+				paginaErro(request, response, "Ação Inexistente", null);
 				break;
 			}
 

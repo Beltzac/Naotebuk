@@ -64,11 +64,11 @@
 					<tbody>
 						<tr>
 							<td>
-							<form action="pesquisa.jsp" method="get">
+							<form action="Controladora?action=searchUsuario" method="get">
 								<label>Palavra-chave</label>
 								<div class="form-group">
 									<input type="text" class="form-control"
-											name="chave" value="" id="">
+											name="pesquisa" value="" id="">
 								</div>
 								<button type="submit" value="" class="btn btn-primary">
 									Pesquisar
