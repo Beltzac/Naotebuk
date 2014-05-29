@@ -118,7 +118,7 @@ public class Controladora extends Servlet {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 					paginaErro(request, response,
-							"Erro ao processar (Usuário)", e1.getMessage());
+							"Erro ao processar (Usuï¿½rio)", e1.getMessage());
 					return;
 				}
 
@@ -140,7 +140,7 @@ public class Controladora extends Servlet {
 					
 				} catch (Exception e) {
 					e.printStackTrace();
-					paginaErro(request, response, "Erro ao pesquisar usuários",
+					paginaErro(request, response, "Erro ao pesquisar usuï¿½rios",
 							e.getMessage());
 					return;
 				}
@@ -384,7 +384,7 @@ public class Controladora extends Servlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 					paginaErro(request, response,
-							"Erro ao processar (Usuário)", e.getMessage());
+							"Erro ao processar (Usuï¿½rio)", e.getMessage());
 					return;
 				}
 
@@ -396,7 +396,7 @@ public class Controladora extends Servlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 					paginaErro(request, response,
-							"Erro ao carregar dados do usuário", e.getMessage());
+							"Erro ao carregar dados do usuï¿½rio", e.getMessage());
 					return;
 				}
 
@@ -407,7 +407,7 @@ public class Controladora extends Servlet {
 				break;
 
 			default:
-				paginaErro(request, response, "Ação Inexistente", null);
+				paginaErro(request, response, "Aï¿½ï¿½o Inexistente", null);
 				break;
 			}
 
