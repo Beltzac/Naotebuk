@@ -2,6 +2,8 @@ package dao;
 
 import java.util.List;
 
+import bean.UsuarioBean;
+
 public interface IDAO<T> {
 
 	T carregar(int id) throws Exception;

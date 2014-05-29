@@ -112,6 +112,42 @@ public class Controladora extends Servlet {
 			
 			case "pesquisaUsuario":
 				
+				usuarioDAO = null;
+				try {
+					usuarioDAO = new UsuarioDAO();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (Usuário)", e1.getMessage());
+					return;
+				}
+
+				List<UsuarioBean> listaUsuarios = null;
+				List<String> campos = new ArrayList<>();
+				campos.add("nome");
+				campos.add("email");
+				campos.add("matricula");
+
+				try {
+
+					String pesquisa2 = request.getParameter("pesquisa");
+					
+
+					if (pesquisa2 != null && pesquisa2.length() > 0)
+						listaUsuarios = usuarioDAO.pesquisar(pesquisa2, campos);
+					else
+						listaUsuarios = usuarioDAO.carregarTodos();
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response, "Erro ao pesquisar usuários",
+							e.getMessage());
+					return;
+				}
+				request.setAttribute("listaUsuarios", listaUsuarios);
+				System.out.print(listaUsuarios);
+				//forward(request, response, "/listaUsers.jsp");
+				
 				forward(request, response, "/pesquisa.jsp");
 				
 				break;
@@ -341,43 +377,32 @@ public class Controladora extends Servlet {
 	
 				break;
 			
-			case "searchUsuario":
+			case "editarUsuario":
 				
-				usuarioDAO = null;
 				try {
 					usuarioDAO = new UsuarioDAO();
-				} catch (Exception e1) {
-					e1.printStackTrace();
-					paginaErro(request, response,
-							"Erro ao processar (Usuário)", e1.getMessage());
-					return;
-				}
-
-				List<UsuarioBean> listaUsuarios = null;
-				List<String> campos = new ArrayList<>();
-				campos.add("nome");
-				campos.add("email");
-				campos.add("matricula");
-
-				try {
-
-					String pesquisa2 = request.getParameter("pesquisa");
-
-					if (pesquisa2 != null && pesquisa2.length() > 0)
-						listaUsuarios = usuarioDAO.pesquisar(pesquisa2, campos);
-					else
-						listaUsuarios = usuarioDAO.carregarTodos();
-
 				} catch (Exception e) {
 					e.printStackTrace();
-					paginaErro(request, response, "Erro ao pesquisar usuários",
-							e.getMessage());
+					paginaErro(request, response,
+							"Erro ao processar (Usuário)", e.getMessage());
 					return;
 				}
 
-				request.setAttribute("listaUsuarios", listaUsuarios);
-				System.out.print(listaUsuarios);
-				forward(request, response, "/listaUsers.jsp");
+				int id = Integer.valueOf(request.getParameter("id"));
+
+				UsuarioBean u = null;
+				try {
+					u = usuarioDAO.carregar(id);
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao carregar dados do usuário", e.getMessage());
+					return;
+				}
+
+				request.setAttribute("usuario", u);
+
+				forward(request, response, "/formUsuario2.jsp");
 				
 				break;
 

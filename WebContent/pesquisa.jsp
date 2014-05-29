@@ -64,7 +64,7 @@
 					<tbody>
 						<tr>
 							<td>
-							<form action="Controladora?action=searchUsuario" method="get">
+							<form action="Controladora?action=pesquisaUsuario" method="post">
 								<label>Palavra-chave</label>
 								<div class="form-group">
 									<input type="text" class="form-control"
@@ -77,7 +77,29 @@
 							</td>
 						</tr>
 					</tbody>
-				</table>	
+				</table>
+				<table class="table">
+     				<thead>
+     				<tr>
+     					<th>ID</th>
+     					<th>Nome</th>
+     					<th>E-mail</th>
+     					<th>Matrícula</th>
+     					<th>Ação</th>
+     				</tr>
+     				</thead>
+     				<tbody>
+     				<c:forEach items="${listaUsuarios}" var="user">
+     				<tr>
+     					<td>${user.id}</td>
+     					<td>${user.nome}</td>
+     					<td>${user.email}</td>
+     					<td>${user.matricula}</td>
+     					<td><a href="Controladora?action=editarUsuario&?id=${user.id}">Editar</a></td>
+     				</tr>
+     				</tbody>
+     				</c:forEach>
+     			</table>	
 
 				<hr>
 			</div>
