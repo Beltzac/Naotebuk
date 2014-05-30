@@ -405,6 +405,12 @@ public class Controladora extends Servlet {
 				forward(request, response, "/formUsuario2.jsp");
 				
 				break;
+				
+			case "relatorio":
+				
+				forward(request, response, "/relatorio.jsp");
+				
+				break;
 
 			default:
 				paginaErro(request, response, "A��o Inexistente", null);

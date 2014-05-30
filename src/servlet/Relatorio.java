@@ -16,7 +16,7 @@ import net.sf.jasperreports.engine.JasperRunManager;
 import dao.ConnectionFactory;
 
 
-@WebServlet("/relatorio")
+@WebServlet("/Relatorio")
 public class Relatorio extends Servlet {
 	private static final long serialVersionUID = 1L;       
 
@@ -33,12 +33,13 @@ public class Relatorio extends Servlet {
     	String jasp;
     	
     	switch (request.getParameter("option")) {
-		case "usuarios":
-			jasp = "/web/usuario-sukces.jasper";
+    	
+		case "atrasado":
+			jasp = "/report/atrasado-naotebuk.jasper";
 			break;
 			
-		case "produtos":
-			jasp = "/web/sukces-produtos.jasper";
+		case "retirar":
+			jasp = "/report/retirar-naotebuk.jasper";
 			break;
 		
 		default:
