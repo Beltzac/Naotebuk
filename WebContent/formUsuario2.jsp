@@ -54,10 +54,10 @@
 					</div>
 					<label>Cargo</label>
 					<div class="radio">	
-					<label><input type="radio" name="gerente" value="0" id=""> Técnico</label>
+					<label><input type="radio" name="gerente" value="0" id="" ${usuario.gerente?'':'checked'}> Técnico</label>
 					</div>
 					<div class="radio">
-					<label><input type="radio" name="gerente" value="1" id=""> Gerente</label>
+					<label><input type="radio" name="gerente" value="1" id="" ${usuario.gerente?'checked':''}> Gerente</label>
 					</div>
 					<div class="form-group">
 					<label>Senha</label>
