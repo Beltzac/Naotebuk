@@ -2,7 +2,9 @@ package servlet;
 
 import java.io.IOException;
 import java.lang.System;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -192,12 +194,29 @@ public class Controladora extends Servlet {
 				try {
 
 					String pesquisa2 = request.getParameter("pesquisa");
+					String idTeste = request.getParameter("id");
+					String data1 = request.getParameter("data1");
+					String data2 = request.getParameter("data2");
+					System.out.println(data1);
+					
 					
 
-					if (pesquisa2 != null && pesquisa2.length() > 0)
+					if (pesquisa2 != null && pesquisa2.length() > 0){
 						listaConsertos = consertoDAO.pesquisar(pesquisa2, camposConserto);
-					else
+					}else if(idTeste != null){
+						listaConsertos = consertoDAO.pesquisaId(idTeste);
+					}else if(data1 !=null && data2 != null){
+						SimpleDateFormat from = new SimpleDateFormat("dd/MM/yyyy");
+						SimpleDateFormat to = new SimpleDateFormat("yyyy-MM-dd");
+						Date date1 = from.parse(data1);
+						Date date2 = from.parse(data2);
+						String d1 = to.format(date1);
+						String d2 = to.format(date2);
+						listaConsertos =consertoDAO.pesquisaData(d1, d2);
+					}else{
 						listaConsertos = consertoDAO.carregarTodos();
+					}
+						
 					
 				} catch (Exception e) {
 					e.printStackTrace();

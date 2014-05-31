@@ -65,11 +65,11 @@
 					<tbody>
 						<tr>
 							<td>
-							<form action="busca.jsp" method="get">
+							<form action="Controladora?action=pesquisaPedido" method="post">
 								<label>Código</label>
 								<div class="form-group">
 									<input type="text" class="form-control"
-											name="chave" value="" id="">
+											name="id" value="" id="">
 								</div>
 								<button type="submit" value="" class="btn btn-primary">
 									Pesquisar por Código
@@ -77,9 +77,9 @@
 							</form>
 							</td>
 							<td>
-							<form action="busca.jsp" method="get">
+							<form action="Controladora?action=pesquisaPedido" method="post">
 								<div class="form-group">
-									<label>Trecho</label> <input type="text" name="chave" class="form-control">
+									<label>Trecho</label> <input type="text" name="pesquisa" class="form-control">
 								</div>
 								<button type="submit" value="" class="btn btn-primary">
 									Pesquisar por Trecho
@@ -87,14 +87,14 @@
 							</form>
 							</td>
 							<td>
-							<form action="busca.jsp" method="get">
+							<form action="Controladora?action=pesquisaPedido" method="post">
 								<div class="form-group">
 									<label>Data Inicial</label> <input type="text" class="form-control"
-										name="dataIni" id="datepicker">
+										name="data1" id="datepicker">
 								</div>
 								<div class="form-group">
 									<label>Data Final</label> <input type="text" class="form-control"
-										name="dataFin" id="datepicker_2">
+										name="data2" id="datepicker_2">
 								</div>
 								<button type="submit" value="" class="btn btn-primary">
 									Pesquisar por Período

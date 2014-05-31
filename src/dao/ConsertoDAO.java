@@ -127,6 +127,40 @@ public class ConsertoDAO implements IDAO<ConsertoBean> {
 		rs.close();
 		return l;
 	}
+	
+	public List<ConsertoBean> pesquisaId (String id) throws SQLException{
+		String sql;
+
+		sql = "SELECT * FROM conserto WHERE id = ";
+		sql += id;
+		
+		stmtPesquisar = con.prepareStatement(sql);
+		ResultSet rs = stmtPesquisar.executeQuery();
+		
+		BeanProcessor bp = new BeanProcessor();
+		List<ConsertoBean> l = bp.toBeanList(rs, ConsertoBean.class);
+		rs.close();
+		return l;
+	}
+	
+	public List<ConsertoBean> pesquisaData (String data1, String data2) throws SQLException{
+		String sql;
+		String and;
+		String end;
+
+		sql = "SELECT * FROM conserto WHERE data_criacao BETWEEN '";
+		and = "' AND '"; 
+		end = "'";
+		sql += data1 + and + data2 + end;
+		
+		stmtPesquisar = con.prepareStatement(sql);
+		ResultSet rs = stmtPesquisar.executeQuery();
+		
+		BeanProcessor bp = new BeanProcessor();
+		List<ConsertoBean> l = bp.toBeanList(rs, ConsertoBean.class);
+		rs.close();
+		return l;
+	}
 
 	@Override
 	public void gravar(ConsertoBean obj, boolean update) throws Exception {
