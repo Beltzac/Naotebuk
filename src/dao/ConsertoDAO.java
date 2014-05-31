@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -164,16 +165,16 @@ public class ConsertoDAO implements IDAO<ConsertoBean> {
 		} else {
 			System.out.println("Atualizando produto: " + obj.toString());
 			stmtAtualizar = con.prepareStatement("UPDATE conserto SET estado = ?, cliente= ?, nome= ?, tipo= ?, modelo= ?, fabricante= ?,descricao= ?,observacao= ?,valor = ? WHERE id = ?");
-			stmtGravar.setInt(1, obj.getEstado_id());
-			stmtGravar.setInt(2, obj.getCliente_id());
-			stmtGravar.setString(3, obj.getNome());
-			stmtGravar.setBoolean(4, obj.isTipo());
-			stmtGravar.setString(5, obj.getModelo());
-			stmtGravar.setString(6, obj.getFabricante());			
-			stmtGravar.setString(7, obj.getDescricao());			
-			stmtGravar.setString(8, obj.getObservacao());			
-			stmtGravar.setDouble(9, obj.getValor());
-			stmtGravar.setInt(10, obj.getId());
+			stmtAtualizar.setInt(1, obj.getEstado_id());
+			stmtAtualizar.setInt(2, obj.getCliente_id());
+			stmtAtualizar.setString(3, obj.getNome());
+			stmtAtualizar.setBoolean(4, obj.isTipo());
+			stmtAtualizar.setString(5, obj.getModelo());
+			stmtAtualizar.setString(6, obj.getFabricante());			
+			stmtAtualizar.setString(7, obj.getDescricao());			
+			stmtAtualizar.setString(8, obj.getObservacao());			
+			stmtAtualizar.setDouble(9, obj.getValor());
+			stmtAtualizar.setInt(10, obj.getId());
 			
 			
 			stmtAtualizar.executeUpdate();					
@@ -182,7 +183,29 @@ public class ConsertoDAO implements IDAO<ConsertoBean> {
 
 	}	
 
-
+	public void atrasar (int id) throws SQLException{
+		stmtAtualizar = con.prepareStatement("UPDATE conserto SET estado_id = 2 WHERE id = ?");
+		stmtAtualizar.setInt(1, id);
+		stmtAtualizar.executeUpdate();
+	}
+	
+	public void pronto (int id) throws SQLException{
+		stmtAtualizar = con.prepareStatement("UPDATE conserto SET estado_id = 3 WHERE id = ?");
+		stmtAtualizar.setInt(1, id);
+		stmtAtualizar.executeUpdate();
+	}
+	
+	public void pago (int id) throws SQLException{
+		stmtAtualizar = con.prepareStatement("UPDATE conserto SET estado_id = 4 WHERE id = ?");
+		stmtAtualizar.setInt(1, id);
+		stmtAtualizar.executeUpdate();
+	}
+	
+	public void finalizar (int id) throws SQLException{
+		stmtAtualizar = con.prepareStatement("UPDATE conserto SET estado_id = 5 WHERE id = ?");
+		stmtAtualizar.setInt(1, id);
+		stmtAtualizar.executeUpdate();
+	}
 
 	@Override
 	public int deletar(int id) throws Exception {

@@ -172,6 +172,44 @@ public class Controladora extends Servlet {
 			
 			case "pesquisaPedido":
 				
+				consertoDAO = null;
+				try {
+					consertoDAO = new ConsertoDAO();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (Conserto)", e1.getMessage());
+					return;
+				}
+
+				List<ConsertoBean> listaConsertos = null;
+				List<String> camposConserto = new ArrayList<>();
+				camposConserto.add("nome");
+				camposConserto.add("modelo");
+				camposConserto.add("fabricante");
+				camposConserto.add("descricao");
+
+				try {
+
+					String pesquisa2 = request.getParameter("pesquisa");
+					
+
+					if (pesquisa2 != null && pesquisa2.length() > 0)
+						listaConsertos = consertoDAO.pesquisar(pesquisa2, camposConserto);
+					else
+						listaConsertos = consertoDAO.carregarTodos();
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response, "Erro ao pesquisar conserto",
+							e.getMessage());
+					return;
+				}
+				request.setAttribute("listaConsertos", listaConsertos);
+				//System.out.print(listaUsuarios);
+				//forward(request, response, "/listaUsers.jsp");
+				
+				//forward(request, response, "/pesquisaCliente.jsp");
 				forward(request, response, "/busca.jsp");
 				
 				break;
@@ -536,6 +574,64 @@ public class Controladora extends Servlet {
 
 				response.sendRedirect("Controladora?action=pesquisaUsuario");
 				
+				break;
+				
+			case "pagos":
+				
+				consertoDAO = null;
+				try {
+					consertoDAO = new ConsertoDAO();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (Conserto)", e1.getMessage());
+					return;
+				}
+
+				List<ConsertoBean> listaPagos = null;
+				try {
+					listaPagos = consertoDAO.carregarPagos();
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response, "Erro ao listar consertos",
+							e.getMessage());
+					return;
+				}
+
+				request.setAttribute("listaPagos", listaPagos);
+	
+	
+				forward(request, response, "/listaPagos.jsp");
+	
+				break;
+				
+			case "finalizados":
+				
+				consertoDAO = null;
+				try {
+					consertoDAO = new ConsertoDAO();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (Conserto)", e1.getMessage());
+					return;
+				}
+
+				List<ConsertoBean> listaFinalizados = null;
+				try {
+					listaFinalizados= consertoDAO.carregarFinalizados();
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response, "Erro ao listar consertos",
+							e.getMessage());
+					return;
+				}
+
+				request.setAttribute("listaFinalizados", listaFinalizados);
+	
+	
+				forward(request, response, "/listaFinalizados.jsp");
+	
 				break;
 
 			default:

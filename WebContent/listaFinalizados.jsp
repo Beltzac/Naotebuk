@@ -1,4 +1,4 @@
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
   
@@ -32,7 +32,7 @@
     <div class="col-md-9">
         <!-- Página aqui -->	
       <!-- column 2 -->	
-      <strong><i class="glyphicon glyphicon-dashboard"></i> Lista de Pedidos Em Aberto</strong>
+      <strong><i class="glyphicon glyphicon-dashboard"></i> Lista de Pedidos Finalizados</strong>
 		<hr>
 			<div class="row">
      			<table class="table">
@@ -46,7 +46,7 @@
      				</tr>
      				</thead>
      				<tbody>
-     				<c:forEach items="${listaEmAberto}" var="pedido">
+     				<c:forEach items="${listaFinalizados}" var="pedido">
      				<tr>
      					<td>${pedido.cliente_id}</td>
      					<td>${pedido.nome}</td>

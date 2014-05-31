@@ -30,7 +30,9 @@
                 <li><a href="Controladora?action=cadastroPedido"><i class="glyphicon glyphicon-arrow-right"></i> Novo Pedido</a></li>                
                 <li><a href="Controladora?action=emAberto"><i class="glyphicon glyphicon-arrow-right"></i> Em aberto</a></li>
 				<li><a href="Controladora?action=atrasados"><i class="glyphicon glyphicon-arrow-right"></i> Atrasados</a></li>
-                <li><a href="Controladora?action=prontos"><i class="glyphicon glyphicon-arrow-right"></i> Prontos</a></li>            
+                <li><a href="Controladora?action=prontos"><i class="glyphicon glyphicon-arrow-right"></i> Prontos</a></li>
+                <li><a href="Controladora?action=pagos"><i class="glyphicon glyphicon-arrow-right"></i> Retirada (Pagos)</a></li>
+                <li><a href="Controladora?action=finalizados"><i class="glyphicon glyphicon-arrow-right"></i> Finalizados</a></li>            
 				<li><a href="Controladora?action=listarTodos"><i class="glyphicon glyphicon-arrow-right"></i> Todos</a></li>	
 				<li><a href="Controladora?action=pesquisaPedido"><i class="glyphicon glyphicon-arrow-right"></i> Busca</a></li>
             </ul>

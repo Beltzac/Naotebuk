@@ -1,3 +1,4 @@
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
   
@@ -102,7 +103,29 @@
 							</td>
 						</tr>
 					</tbody>
-				</table>	
+				</table>
+				<table class="table">
+     				<thead>
+     				<tr>
+     					<th width="250px">ID Cliente</th>
+     					<th>Produto</th>
+     					<th>Valor</th>
+     					<th>Previsão Entrega</th>
+     					<th>Link</th>
+     				</tr>
+     				</thead>
+     				<tbody>
+     				<c:forEach items="${listaConsertos}" var="pedido">
+     				<tr>
+     					<td>${pedido.cliente_id}</td>
+     					<td>${pedido.nome}</td>
+     					<td><fmt:formatNumber value="${pedido.valor}" type="currency"/></td>
+     					<td>${pedido.previsao}</td>
+     					<td><a href="Controladora?action=editarConserto&id=${pedido.id}">Editar</a></td>
+     				</tr>
+     				</tbody>
+     				</c:forEach>
+     			</table>	
 				
 				<hr>
 			</div>
