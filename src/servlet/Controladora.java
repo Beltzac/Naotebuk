@@ -411,9 +411,135 @@ public class Controladora extends Servlet {
 				forward(request, response, "/relatorio.jsp");
 				
 				break;
+				
+			case "pesquisaCliente":
+				
+				clienteDAO = null;
+				try {
+					clienteDAO = new ClienteDAO();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (Cliente)", e1.getMessage());
+					return;
+				}
+
+				List<ClienteBean> listaClientes = null;
+				List<String> camposCliente = new ArrayList<>();
+				camposCliente.add("nome");
+				camposCliente.add("email");
+				camposCliente.add("cpf");
+
+				try {
+
+					String pesquisa2 = request.getParameter("pesquisa");
+					
+
+					if (pesquisa2 != null && pesquisa2.length() > 0)
+						listaClientes = clienteDAO.pesquisar(pesquisa2, camposCliente);
+					else
+						listaClientes = clienteDAO.carregarTodos();
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response, "Erro ao pesquisar cliente",
+							e.getMessage());
+					return;
+				}
+				request.setAttribute("listaClientes", listaClientes);
+				//System.out.print(listaUsuarios);
+				//forward(request, response, "/listaUsers.jsp");
+				
+				forward(request, response, "/pesquisaCliente.jsp");
+				
+				break;
+				
+			case "editarCliente":
+				
+				try {
+					clienteDAO = new ClienteDAO();
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (Cliente)", e.getMessage());
+					return;
+				}
+
+				int idC = Integer.valueOf(request.getParameter("id"));
+
+				ClienteBean c = null;
+				try {
+					c = clienteDAO.carregar(idC);
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao carregar dados do cliente", e.getMessage());
+					return;
+				}
+
+				request.setAttribute("cliente", c);
+
+				forward(request, response, "/formCliente2.jsp");
+				
+				break;
+				
+			case "editCliente":
+				
+				clienteDAO = null;
+				try {
+					clienteDAO = new ClienteDAO();
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (Cliente)", e.getMessage());
+					return;
+				}
+				ClienteBean cliente2 = FormUtil.populate(ClienteBean.class,
+						request);
+
+				try {
+					clienteDAO.gravar(cliente2, true);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao editar um cliente", e1.getMessage());
+					return;
+				}
+
+				response.sendRedirect("Controladora?action=pesquisaCliente");
+				
+				break;
+				
+			case "editUsuario":
+				
+				usuarioDAO = null;
+				try {
+					usuarioDAO = new UsuarioDAO();
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (UsuÃ¡rio)", e.getMessage());
+					return;
+				}
+
+				UsuarioBean usuario2 = FormUtil.populate(UsuarioBean.class,
+						request);
+
+				try {
+					usuarioDAO.gravar(usuario2, true);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao editar sua conta", e1.getMessage());
+					return;
+				}
+
+				response.sendRedirect("Controladora?action=pesquisaUsuario");
+				
+				break;
 
 			default:
-				paginaErro(request, response, "Aï¿½ï¿½o Inexistente", null);
+				paginaErro(request, response, "Ação Inexistente", null);
 				break;
 			}
 

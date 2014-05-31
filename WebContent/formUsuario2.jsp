@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>Nãotebuk - Cadastro de Usuário</title>
+<title>Nãotebuk - Edição de Usuário</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -36,10 +36,10 @@
 				<!-- Página aqui -->
 				<!-- column 2 -->
 				<strong><i class="glyphicon glyphicon-dashboard"></i>
-					Cadastro de Usuário</strong>
+					Editar Usuário</strong>
 				<hr>
 				<div class="row">
-					<form role="form" method="POST" action="Controladora?action=novoUsuario">
+					<form role="form" method="POST" action="Controladora?action=editUsuario">
 					<div class="form-group">
 					<label>Nome</label>
 					<input type="text" class="form-control" name="nome" value="${usuario.nome}" id="" required>

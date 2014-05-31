@@ -103,16 +103,16 @@ public class ClienteDAO implements IDAO<ClienteBean> {
 			
 		} else {
 			System.out.println("Atualizando conta: " + obj.getEmail());
-			stmtAtualizar = con.prepareStatement("UPDATE cliente SET nome = ?, email = ?, cpf = ?,  cep = ?, rua = ?,cidade = ?,estado = ?, numero = ?, telefone = ? WHERE id = ?");
-			stmtGravar.setString(1, obj.getNome());
-			stmtGravar.setString(2, obj.getEmail());			
-			stmtGravar.setString(3, obj.getCpf());
-			stmtGravar.setString(4, obj.getCep());
-			stmtGravar.setString(5, obj.getRua());
-			stmtGravar.setString(6, obj.getCidade());
-			stmtGravar.setString(7, obj.getEstado());
-			stmtGravar.setString(8, obj.getNumero());
-			stmtGravar.setString(9, obj.getTelefone());
+			stmtAtualizar = con.prepareStatement("UPDATE cliente SET nome = ?, email = ?, cpf = ?,  cep = ?, rua = ?,cidade = ?,estado = ?, num = ?, sexo = ? WHERE id = ?");
+			stmtAtualizar.setString(1, obj.getNome());
+			stmtAtualizar.setString(2, obj.getEmail());			
+			stmtAtualizar.setString(3, obj.getCpf());
+			stmtAtualizar.setString(4, obj.getCep());
+			stmtAtualizar.setString(5, obj.getRua());
+			stmtAtualizar.setString(6, obj.getCidade());
+			stmtAtualizar.setString(7, obj.getEstado());
+			stmtAtualizar.setString(8, obj.getNumero());
+			stmtAtualizar.setBoolean(9, obj.isSexo());
 			stmtAtualizar.setInt(10, obj.getId());
 			
 			stmtAtualizar.executeUpdate();					
