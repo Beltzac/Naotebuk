@@ -52,7 +52,7 @@
      					<td>${pedido.nome}</td>
      					<td><fmt:formatNumber value="${pedido.valor}" type="currency"/></td>
      					<td>${pedido.previsao}</td>
-     					<td><a href="Controladora?action=editarConserto&id=${pedido.id}">Editar</a></td>
+     					<td><a class="btn btn-primary btn-xs" href="Controladora?action=editarConserto&id=${pedido.id}">Editar</a></td>
      				</tr>
      				</tbody>
      				</c:forEach>

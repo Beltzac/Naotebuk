@@ -95,7 +95,7 @@
      					<td>${cli.nome}</td>
      					<td>${cli.email}</td>
      					<td>${cli.cpf}</td>
-     					<td><a href="Controladora?action=editarCliente&id=${cli.id}">Editar</a></td>
+     					<td><a class="btn btn-primary btn-xs" href="Controladora?action=editarCliente&id=${cli.id}">Editar</a></td>
      				</tr>
      				</tbody>
      				</c:forEach>

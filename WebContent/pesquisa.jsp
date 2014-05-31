@@ -95,7 +95,7 @@
      					<td>${user.nome}</td>
      					<td>${user.email}</td>
      					<td>${user.matricula}</td>
-     					<td><a href="Controladora?action=editarUsuario&id=${user.id}">Editar</a></td>
+     					<td><a class="btn btn-primary btn-xs" href="Controladora?action=editarUsuario&id=${user.id}">Editar</a></td>
      				</tr>
      				</tbody>
      				</c:forEach>

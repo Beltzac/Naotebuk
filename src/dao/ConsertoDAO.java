@@ -197,8 +197,13 @@ public class ConsertoDAO implements IDAO<ConsertoBean> {
 			
 			
 		} else {
+			System.out.println("Atualizando conserto: " + obj.toString());
+			SimpleDateFormat from = new SimpleDateFormat("dd/MM/yyyy");
+			SimpleDateFormat to = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = from.parse(obj.getPrevisao());       
+			String sqldate = to.format(date);
 			System.out.println("Atualizando produto: " + obj.toString());
-			stmtAtualizar = con.prepareStatement("UPDATE conserto SET estado = ?, cliente= ?, nome= ?, tipo= ?, modelo= ?, fabricante= ?,descricao= ?,observacao= ?,valor = ? WHERE id = ?");
+			stmtAtualizar = con.prepareStatement("UPDATE conserto SET estado_id = ?, cliente_id= ?, nome= ?, tipo= ?, modelo= ?, fabricante= ?,descricao= ?,observacao= ?,valor = ?, previsao = ? WHERE id = ?");
 			stmtAtualizar.setInt(1, obj.getEstado_id());
 			stmtAtualizar.setInt(2, obj.getCliente_id());
 			stmtAtualizar.setString(3, obj.getNome());
@@ -208,7 +213,8 @@ public class ConsertoDAO implements IDAO<ConsertoBean> {
 			stmtAtualizar.setString(7, obj.getDescricao());			
 			stmtAtualizar.setString(8, obj.getObservacao());			
 			stmtAtualizar.setDouble(9, obj.getValor());
-			stmtAtualizar.setInt(10, obj.getId());
+			stmtAtualizar.setString(10, sqldate);
+			stmtAtualizar.setInt(11, obj.getId());
 			
 			
 			stmtAtualizar.executeUpdate();					

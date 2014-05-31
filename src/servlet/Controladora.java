@@ -649,6 +649,171 @@ public class Controladora extends Servlet {
 				forward(request, response, "/listaFinalizados.jsp");
 	
 				break;
+				
+			case "editarConserto":
+				
+				try {
+					consertoDAO = new ConsertoDAO();
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (Conserto)", e.getMessage());
+					return;
+				}
+
+				int idCon = Integer.valueOf(request.getParameter("id"));
+
+				ConsertoBean con = null;
+				try {
+					con = consertoDAO.carregar(idCon);
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao carregar dados do conserto", e.getMessage());
+					return;
+				}
+
+				request.setAttribute("conserto", con);
+
+				forward(request, response, "/formPedido2.jsp");
+				
+				break;
+				
+			case "editPedido":
+				
+				consertoDAO = null;
+				try {
+					consertoDAO = new ConsertoDAO();
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (Conserto)", e.getMessage());
+					return;
+				}
+
+				ConsertoBean conserto2 = FormUtil.populate(ConsertoBean.class,
+						request);
+
+				try {
+					consertoDAO.gravar(conserto2, true);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao editar o conserto", e1.getMessage());
+					return;
+				}
+
+				response.sendRedirect("Controladora?action=listarTodos");
+				
+				break;
+				
+			case "atrasar":
+				
+				int idAtr = Integer.valueOf(request.getParameter("id"));
+				
+				consertoDAO = null;
+				try {
+					consertoDAO = new ConsertoDAO();
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (Conserto)", e.getMessage());
+					return;
+				}
+				
+				try {
+					consertoDAO.atrasar(idAtr);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao editar o conserto", e1.getMessage());
+					return;
+				}
+
+				response.sendRedirect("Controladora?action=atrasados");
+				
+				break;
+				
+			case "done":
+				
+				int idDone = Integer.valueOf(request.getParameter("id"));
+				
+				consertoDAO = null;
+				try {
+					consertoDAO = new ConsertoDAO();
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (Conserto)", e.getMessage());
+					return;
+				}
+				
+				try {
+					consertoDAO.pronto(idDone);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao editar o conserto", e1.getMessage());
+					return;
+				}
+
+				response.sendRedirect("Controladora?action=prontos");
+				
+				break;
+				
+			case "pago":
+				
+				int idPago = Integer.valueOf(request.getParameter("id"));
+				
+				consertoDAO = null;
+				try {
+					consertoDAO = new ConsertoDAO();
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (Conserto)", e.getMessage());
+					return;
+				}
+				
+				try {
+					consertoDAO.pago(idPago);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao editar o conserto", e1.getMessage());
+					return;
+				}
+
+				response.sendRedirect("Controladora?action=pagos");
+				
+				break;
+				
+			case "finalizar":
+				
+				int idFinal = Integer.valueOf(request.getParameter("id"));
+				
+				consertoDAO = null;
+				try {
+					consertoDAO = new ConsertoDAO();
+				} catch (Exception e) {
+					e.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao processar (Conserto)", e.getMessage());
+					return;
+				}
+				
+				try {
+					consertoDAO.finalizar(idFinal);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao editar o conserto", e1.getMessage());
+					return;
+				}
+
+				response.sendRedirect("Controladora?action=finalizados");
+				
+				break;
 
 			default:
 				paginaErro(request, response, "Ação Inexistente", null);
