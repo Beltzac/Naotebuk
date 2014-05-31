@@ -40,6 +40,7 @@
 				<hr>
 				<div class="row">
 					<form role="form" method="POST" action="Controladora?action=editUsuario">
+					<input type="hidden" value="${usuario.id}" name="id" />
 					<div class="form-group">
 					<label>Nome</label>
 					<input type="text" class="form-control" name="nome" value="${usuario.nome}" id="" required>

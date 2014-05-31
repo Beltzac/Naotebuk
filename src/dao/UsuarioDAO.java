@@ -107,7 +107,7 @@ public class UsuarioDAO implements IDAO<UsuarioBean> {
 			
 		} else {
 			System.out.println("Atualizando conta: " + obj.getEmail());
-			stmtAtualizar = con.prepareStatement("UPDATE usuario SET nome = ?, email = ?, senha = ?, gerente = ?, matricula = ? WHERE id = ?");
+			stmtAtualizar = con.prepareStatement("UPDATE usuario SET nome = ?, email = ?, senha = MD5(?), gerente = ?, matricula = ? WHERE id = ?");
 			stmtAtualizar.setString(1, obj.getNome());
 			stmtAtualizar.setString(2, obj.getEmail());
 			stmtAtualizar.setString(3, obj.getSenha());

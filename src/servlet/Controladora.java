@@ -225,10 +225,7 @@ public class Controladora extends Servlet {
 					return;
 				}
 				request.setAttribute("listaConsertos", listaConsertos);
-				//System.out.print(listaUsuarios);
-				//forward(request, response, "/listaUsers.jsp");
-				
-				//forward(request, response, "/pesquisaCliente.jsp");
+
 				forward(request, response, "/busca.jsp");
 				
 				break;

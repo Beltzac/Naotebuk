@@ -85,7 +85,7 @@ public class ClienteDAO implements IDAO<ClienteBean> {
 			Date date = from.parse(obj.getDataNasc());       
 			String sqldate = to.format(date);     
 			System.out.println("Criando conta: " + obj.getEmail());
-			stmtGravar = con.prepareStatement("INSERT INTO cliente (nome, email, cpf, cep, rua, cidade, estado, num, sexo, dataNasc, data_criacao) VALUES (?,?,?,?,?,?,?,?,?,?,CURRENT_DATE())");
+			stmtGravar = con.prepareStatement("INSERT INTO cliente (nome, email, cpf, cep, rua, cidade, estado, numero, sexo, dataNasc, data_criacao) VALUES (?,?,?,?,?,?,?,?,?,?,CURRENT_DATE())");
 			stmtGravar.setString(1, obj.getNome());
 			stmtGravar.setString(2, obj.getEmail());			
 			stmtGravar.setString(3, obj.getCpf());
@@ -102,8 +102,12 @@ public class ClienteDAO implements IDAO<ClienteBean> {
 			stmtGravar.executeUpdate();
 			
 		} else {
-			System.out.println("Atualizando conta: " + obj.getEmail());
-			stmtAtualizar = con.prepareStatement("UPDATE cliente SET nome = ?, email = ?, cpf = ?,  cep = ?, rua = ?,cidade = ?,estado = ?, num = ?, sexo = ? WHERE id = ?");
+			SimpleDateFormat from = new SimpleDateFormat("dd/MM/yyyy");
+			SimpleDateFormat to = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = from.parse(obj.getDataNasc());       
+			String sqldate = to.format(date);     
+			System.out.println("\n Atualizando conta: " + obj.getEmail() + " " + obj.getNome());
+			stmtAtualizar = con.prepareStatement("UPDATE cliente SET nome = ?, email = ?, cpf = ?,  cep = ?, rua = ?,cidade = ?,estado = ?, numero = ?, sexo = ?, dataNasc = ? WHERE id = ?");
 			stmtAtualizar.setString(1, obj.getNome());
 			stmtAtualizar.setString(2, obj.getEmail());			
 			stmtAtualizar.setString(3, obj.getCpf());
@@ -113,7 +117,8 @@ public class ClienteDAO implements IDAO<ClienteBean> {
 			stmtAtualizar.setString(7, obj.getEstado());
 			stmtAtualizar.setString(8, obj.getNumero());
 			stmtAtualizar.setBoolean(9, obj.isSexo());
-			stmtAtualizar.setInt(10, obj.getId());
+			stmtAtualizar.setString(10, sqldate);
+			stmtAtualizar.setInt(11, obj.getId());
 			
 			stmtAtualizar.executeUpdate();					
 			

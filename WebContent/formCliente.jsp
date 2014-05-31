@@ -77,7 +77,7 @@
 						<div class="form-group">
 							<label>Número</label> 
 							<input type="text" class="form-control"
-								name="num" value="" id="" required>
+								name="numero" value="" id="" required>
 						</div>
 						<div class="form-group">
 							<label>Cidade</label> 

@@ -53,6 +53,7 @@
 				<hr>
 				<div class="row">
 					<form role="form" method="POST" action="Controladora?action=editCliente">
+					<input type="hidden" value="${cliente.id}" name="id" />
 						<div class="form-group">
 							<label>Nome</label> <input type="text" class="form-control" name="nome" value="${cliente.nome}" id="" required>
 						</div>
@@ -77,7 +78,7 @@
 						<div class="form-group">
 							<label>Número</label> 
 							<input type="text" class="form-control"
-								name="num" value="${cliente.numero}" id="" required>
+								name="numero" value="${cliente.numero}" id="" required>
 						</div>
 						<div class="form-group">
 							<label>Cidade</label> 
