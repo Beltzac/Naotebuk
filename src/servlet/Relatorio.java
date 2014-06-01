@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
 import java.sql.Connection;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
@@ -41,6 +44,10 @@ public class Relatorio extends Servlet {
 		case "retirar":
 			jasp = "/report/retirar-naotebuk.jasper";
 			break;
+			
+		case "datas":
+			jasp = "/report/datas-naotebuk.jasper";
+			break;
 		
 		default:
 			paginaErro(request, response, "Erro ao criar relatório (Parâmetro não existente)", null);
@@ -54,6 +61,18 @@ public class Relatorio extends Servlet {
 			String host = "http://" + request.getServerName() + ":" + request.getServerPort();
 			URL jasperURL = new URL(host + jasper);
 			HashMap params = new HashMap();
+			if(jasp == "/report/datas-naotebuk.jasper"){
+				String data1 = request.getParameter("data1");
+				String data2 = request.getParameter("data2");
+				SimpleDateFormat from = new SimpleDateFormat("dd/MM/yyyy");
+				SimpleDateFormat to = new SimpleDateFormat("yyyy-MM-dd");
+				Date date = from.parse(data1);       
+				String date1 = to.format(date);
+				date = from.parse(data2);
+				String date2 = to.format(date);
+				params.put("data1", date1);
+				params.put("data2", date2);
+ 			}
 			byte[] bytes = null;
 			bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
 			if (bytes != null) {
@@ -66,6 +85,9 @@ public class Relatorio extends Servlet {
 			e.printStackTrace();
 			paginaErro(request, response, "Erro ao criar relatório", e.getMessage());
 			return;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
     	
     }

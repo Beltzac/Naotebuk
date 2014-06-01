@@ -18,6 +18,31 @@
 		$("#mat").mask("9999-99");
 	});
 </script>
+<script>
+	$(function() {
+		$("#datepicker").datepicker(
+				{
+					changeMonth : true,
+					changeYear : true,
+					dateFormat : "dd/mm/yy",
+					monthNamesShort : [ "Jan", "Fev", "Mar", "Abr", "Mai",
+							"Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez" ],
+					dayNamesMin : [ "Do", "2ª", "3ª", "4ª", "5ª", "6ª", "Sá" ],
+					yearRange : "1930:2014"
+				});
+		
+		$("#datepicker_2").datepicker(
+				{
+					changeMonth : true,
+					changeYear : true,
+					dateFormat : "dd/mm/yy",
+					monthNamesShort : [ "Jan", "Fev", "Mar", "Abr", "Mai",
+							"Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez" ],
+					dayNamesMin : [ "Do", "2ª", "3ª", "4ª", "5ª", "6ª", "Sá" ],
+					yearRange : "1930:2014"
+				});
+	});
+</script>
 </head>
 
 <body>
@@ -40,7 +65,16 @@
 				<div class="row">
 					<form role="form" method="POST" action="Relatorio">
 						<input type='radio' name='option' value='atrasado' checked> Atrasados <br /> 
-					    <input type='radio' name='option' value='retirar'> A serem retirados <br /><br> 
+					    <input type='radio' name='option' value='retirar'> A serem retirados <br />
+					    <input type='radio' name='option' value='datas'> Por data <br /><br>
+								<div class="form-group">
+									<label>Data Inicial</label> <input type="text" class="form-control"
+										name="data1" id="datepicker">
+								</div>
+								<div class="form-group">
+									<label>Data Final</label> <input type="text" class="form-control"
+										name="data2" id="datepicker_2">
+								</div>
 					<button type="submit" value="" class="btn btn-primary" >Gerar</button>
 				</form>
 				</div>
