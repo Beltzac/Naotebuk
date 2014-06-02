@@ -14,7 +14,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperRunManager;
 import dao.ConnectionFactory;
 
@@ -72,13 +76,16 @@ public class Relatorio extends Servlet {
 				String d1 = "'" + da1 + "'";
 				String da2 = to.format(date2);
 				String d2 = "'" + da2 + "'";
-				System.out.println(d1);
-				System.out.println(d2);
-				params.put("data1", d1);
-				params.put("data2", d2);
+				params.put("data1", da1);
+				params.put("data2", da2);
+				System.out.println(params.get("data1"));
+				System.out.println(params.get("data2"));
+				System.out.println(jasp);
  			}
 			byte[] bytes = null;
 			bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
+			//JasperPrint  jasperPrint = JasperFillManager.fillReport(jasp, params, new JREmptyDataSource()); 
+			//JasperExportManager.exportReportToPdfFile(jasperPrint, "test.pdf");  
 			if (bytes != null) {
 				response.setContentType("application/pdf");
 				OutputStream ops = null;
