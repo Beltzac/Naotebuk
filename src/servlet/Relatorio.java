@@ -66,12 +66,16 @@ public class Relatorio extends Servlet {
 				String data2 = request.getParameter("data2");
 				SimpleDateFormat from = new SimpleDateFormat("dd/MM/yyyy");
 				SimpleDateFormat to = new SimpleDateFormat("yyyy-MM-dd");
-				Date date = from.parse(data1);       
-				String date1 = to.format(date);
-				date = from.parse(data2);
-				String date2 = to.format(date);
-				params.put("data1", date1);
-				params.put("data2", date2);
+				Date date1 = from.parse(data1);
+				Date date2 = from.parse(data2); 
+				String da1 = to.format(date1);
+				String d1 = "'" + da1 + "'";
+				String da2 = to.format(date2);
+				String d2 = "'" + da2 + "'";
+				System.out.println(d1);
+				System.out.println(d2);
+				params.put("data1", d1);
+				params.put("data2", d2);
  			}
 			byte[] bytes = null;
 			bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
