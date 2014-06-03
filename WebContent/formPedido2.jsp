@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="js/bootstrap.js"></script>
 	<script type="text/javascript" src="js/jquery-ui.js"></script>
 	<script type="text/javascript" src="js/jquery.maskedinput.js"></script>
+	<script type="text/javascript" src="js/jquery.maskMoney.js"></script>
 	<script>
 		 $(function() {
 			$( "#datepicker" ).datepicker({
@@ -24,6 +25,11 @@
 				yearRange: "1930:2014"
 			});
 		});
+	</script>
+	<script>
+	  $(function() {
+	    $('#valor').maskMoney();
+	  })
 	</script>
 	<!--<script>
 		jQuery(function($){
@@ -89,7 +95,7 @@
 						</div>
 						<div class="form-group">
 							<label>Preço</label>
-							<input type="text" class="form-control"	name="valor" value="${conserto.valor}" required>
+							<input type="text" data-symbol="R$ " data-thousands="." data-decimal="," class="form-control"	name="valor" id="valor" value="${conserto.valor}" required>
 						</div>
 						<div class="form-group">
 							<label>Estado</label> 
