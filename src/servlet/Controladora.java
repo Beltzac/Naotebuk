@@ -26,6 +26,13 @@ import dao.ConsertoDAO;
 import dao.EstadoDAO;
 import dao.UsuarioDAO;
 
+import javax.mail.*;
+
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.SimpleEmail;
+
+
 /**
  * Servlet implementation class Controladora
  */
@@ -33,6 +40,8 @@ import dao.UsuarioDAO;
 @MultipartConfig
 public class Controladora extends Servlet {
 	private static final long serialVersionUID = 1L;
+	private ConsertoDAO consertoDAO;
+	private ClienteDAO clienteDAO;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -751,6 +760,30 @@ public class Controladora extends Servlet {
 				try {
 					consertoDAO.pronto(idDone);
 				} catch (Exception e1) {
+					e1.printStackTrace();
+					paginaErro(request, response,
+							"Erro ao editar o conserto", e1.getMessage());
+					return;
+				}
+				
+				int cli = Integer.valueOf(request.getParameter("cli"));
+				try{
+					clienteDAO = null;
+					consertoDAO = null;
+					ClienteBean c3 = clienteDAO.email(cli);
+					ConsertoBean c4 = consertoDAO.carregar(idDone);
+					String mail = c3.getEmail();
+					Email email = new SimpleEmail();
+					email.setHostName("smtp.googlemail.com");
+					email.setSmtpPort(465);
+					email.setAuthenticator(new DefaultAuthenticator("cenibrac.dim2012", "pistache00"));
+					email.setSSLOnConnect(true);
+					email.setFrom("cenibrac.dim2012@gmail.com");
+					email.setSubject("Pedido nº " + c4.getId() + " está pronto");
+					email.setMsg("Estamos aguardando o pagamento do seu pedido \nModelo: " + c4.getModelo() +"\nFabricante: " + c4.getFabricante() + "\nObrigado pela Preferência!\nAtt Naotebuk");
+					email.addTo(mail);
+					email.send();
+				}catch(Exception e1){
 					e1.printStackTrace();
 					paginaErro(request, response,
 							"Erro ao editar o conserto", e1.getMessage());

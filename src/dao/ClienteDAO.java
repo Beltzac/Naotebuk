@@ -40,6 +40,21 @@ public class ClienteDAO implements IDAO<ClienteBean> {
 
 		rs.close();
 		return o;
+	}
+	
+	public ClienteBean email(int id) throws Exception {
+		stmtCarregar = con.prepareStatement("SELECT email FROM cliente WHERE id = ?");
+		stmtCarregar.setInt(1, id);
+		ResultSet rs = stmtCarregar.executeQuery();
+		ClienteBean o = null;
+
+		if (rs.next()) {
+			BeanProcessor bp = new BeanProcessor();
+			o = bp.toBean(rs, ClienteBean.class);
+		}
+
+		rs.close();
+		return o;
 	}	
 
 
