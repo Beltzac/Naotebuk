@@ -769,7 +769,9 @@ public class Controladora extends Servlet {
 				int cli = Integer.valueOf(request.getParameter("cli"));
 				try{
 					clienteDAO = null;
+					clienteDAO = new ClienteDAO();
 					consertoDAO = null;
+					consertoDAO = new ConsertoDAO();
 					ClienteBean c3 = clienteDAO.email(cli);
 					ConsertoBean c4 = consertoDAO.carregar(idDone);
 					String mail = c3.getEmail();
