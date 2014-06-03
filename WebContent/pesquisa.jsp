@@ -96,8 +96,7 @@
 									<td>${user.nome}</td>
 									<td>${user.email}</td>
 									<td>${user.matricula}</td>
-									<td><a class="btn btn-primary btn-xs"
-										href="Controladora?action=editarUsuario&id=${user.id}">Editar</a></td>
+									<td><c:if test="${loginBean.gerente}"><a class="btn btn-primary btn-xs"	href="Controladora?action=editarUsuario&id=${user.id}">Editar</a></c:if></td>
 								</tr>
 						</tbody>
 						</c:forEach>

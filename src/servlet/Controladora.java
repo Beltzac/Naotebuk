@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.lang.System;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,6 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.SimpleEmail;
+
 import util.FormUtil;
 import bean.ClienteBean;
 import bean.ConsertoBean;
@@ -26,12 +29,6 @@ import dao.ConsertoDAO;
 import dao.EstadoDAO;
 import dao.UsuarioDAO;
 
-import javax.mail.*;
-
-import org.apache.commons.mail.DefaultAuthenticator;
-import org.apache.commons.mail.Email;
-import org.apache.commons.mail.SimpleEmail;
-
 
 /**
  * Servlet implementation class Controladora
@@ -40,8 +37,6 @@ import org.apache.commons.mail.SimpleEmail;
 @MultipartConfig
 public class Controladora extends Servlet {
 	private static final long serialVersionUID = 1L;
-	private ConsertoDAO consertoDAO;
-	private ClienteDAO clienteDAO;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -53,8 +48,7 @@ public class Controladora extends Servlet {
 	private void processRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		String action = request.getParameter("action");
-		String sub = request.getParameter("sub");
+		String action = request.getParameter("action");		
 
 		HttpSession session = request.getSession();
 
@@ -63,8 +57,6 @@ public class Controladora extends Servlet {
 		UsuarioDAO usuarioDAO = null;
 		ConsertoDAO consertoDAO = null;
 		ClienteDAO clienteDAO = null;
-
-		String path = getServletContext().getRealPath("/");
 
 		// carrega 
 		carregarObjetosComuns(request, response);
@@ -206,14 +198,14 @@ public class Controladora extends Servlet {
 					String idTeste = request.getParameter("id");
 					String data1 = request.getParameter("data1");
 					String data2 = request.getParameter("data2");
-					System.out.println(data1);
-					
-					
+					System.out.println(data1);					
 
 					if (pesquisa2 != null && pesquisa2.length() > 0){
 						listaConsertos = consertoDAO.pesquisar(pesquisa2, camposConserto);
 					}else if(idTeste != null){
-						listaConsertos = consertoDAO.pesquisaId(idTeste);
+						List<ConsertoBean> lista = new ArrayList<>();
+						lista.add(consertoDAO.carregar(Integer.valueOf(idTeste)));		
+						listaConsertos = lista;
 					}else if(data1 !=null && data2 != null){
 						SimpleDateFormat from = new SimpleDateFormat("dd/MM/yyyy");
 						SimpleDateFormat to = new SimpleDateFormat("yyyy-MM-dd");

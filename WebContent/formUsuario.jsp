@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:if test="${!loginBean.gerente}">
+	<c:redirect url="Controladora?action=loginPage"/>
+</c:if>
+
+
 <head>
 <meta charset="utf-8">
 <title>Nãotebuk - Cadastro de Usuário</title>

@@ -1,3 +1,4 @@
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Left column -->
 <div class="col-md-3">   
       <strong><i class="glyphicon glyphicon-wrench"></i> Painel</strong>
@@ -9,8 +10,10 @@
             <ul class="list-unstyled collapse in" id="userMenu">
                         
              <li><a href="Controladora?action=pesquisaUsuario"><i class="glyphicon glyphicon-search"></i> Pesquisar</a></li>
+            
+			<c:if test="${loginBean.gerente}">
                <li><a href="Controladora?action=cadastroUsuario"><i class="glyphicon glyphicon-user"></i> Cadastro</a></li>                            
-		
+			</c:if>
             </ul>
         </li>
          <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#cliMenu">

@@ -128,21 +128,6 @@ public class ConsertoDAO implements IDAO<ConsertoBean> {
 		return l;
 	}
 	
-	public List<ConsertoBean> pesquisaId (String id) throws SQLException{
-		String sql;
-
-		sql = "SELECT * FROM conserto WHERE id = ";
-		sql += id;
-		
-		stmtPesquisar = con.prepareStatement(sql);
-		ResultSet rs = stmtPesquisar.executeQuery();
-		
-		BeanProcessor bp = new BeanProcessor();
-		List<ConsertoBean> l = bp.toBeanList(rs, ConsertoBean.class);
-		rs.close();
-		return l;
-	}
-	
 	public List<ConsertoBean> pesquisaData (String data1, String data2) throws SQLException{
 		String sql;
 		String and;
