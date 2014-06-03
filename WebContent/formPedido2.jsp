@@ -99,6 +99,12 @@
     	    							 </c:forEach>
 							</select>
 						</div>
+						<c:if test="${conserto.estado_id gt 2}">
+						<div class="form-group">
+							<label>Observação</label>
+							<textarea class="form-control" rows="5" name="observacao" >${conserto.observacao}</textarea>
+						</div>
+						</c:if>
 						<br>
 						<button type="submit" value="" class="btn btn-primary" >
 						Atualizar
