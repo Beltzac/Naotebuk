@@ -238,13 +238,7 @@ public class Controladora extends Servlet {
 				forward(request, response, "/busca.jsp");
 				
 				break;
-
-			case "pagamento":
-				
-				forward(request, response, "/pagamentoConserto.jsp");
-				
-				break;
-
+	
 			case "emAberto":
 				
 				consertoDAO = null;
@@ -781,8 +775,8 @@ public class Controladora extends Servlet {
 					email.setAuthenticator(new DefaultAuthenticator("cenibrac.dim2012", "pistache00"));
 					email.setSSLOnConnect(true);
 					email.setFrom("cenibrac.dim2012@gmail.com");
-					email.setSubject("Pedido nº " + c4.getId() + " está pronto");
-					email.setMsg("Estamos aguardando o pagamento do seu pedido \nModelo: " + c4.getModelo() +"\nFabricante: " + c4.getFabricante() + "\nObrigado pela Preferência!\nAtt Naotebuk");
+					email.setSubject("Pedido nï¿½ " + c4.getId() + " estï¿½ pronto");
+					email.setMsg("Estamos aguardando o pagamento do seu pedido \nModelo: " + c4.getModelo() +"\nFabricante: " + c4.getFabricante() + "\nObrigado pela Preferï¿½ncia!\nAtt Naotebuk");
 					email.addTo(mail);
 					email.send();
 				}catch(Exception e1){
@@ -851,7 +845,7 @@ public class Controladora extends Servlet {
 				break;
 
 			default:
-				paginaErro(request, response, "Ação Inexistente", null);
+				paginaErro(request, response, "Aï¿½ï¿½o Inexistente", null);
 				break;
 			}
 

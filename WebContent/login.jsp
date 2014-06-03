@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:useBean id="usuario" scope="session" class="bean.LoginBean" />
-<%	if (usuario.isAutenticado()) response.sendRedirect("Controladora?action=listaPedidos"); %>
+
+<c:if test="${loginBean.autenticado}">
+	<c:redirect url="Controladora?action=listaPedidos" />
+</c:if>
+
 <!DOCTYPE html>
 <html>
 <head>

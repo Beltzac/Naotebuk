@@ -48,122 +48,94 @@
 <!-- /Header -->
 
 <!-- Main -->
-<div class="container">
-<div class="row">
+	<div class="container">
+		<div class="row">
 
-<!-- Left column -->
-<%@ include file="menuEsquerda.jsp"%>  
+			<!-- Left column -->
+			<%@ include file="menuEsquerda.jsp"%>
 
 
-    <div class="col-md-9">
-        <!-- Página aqui -->	
-      <!-- column 2 -->	
-      <strong><i class="glyphicon glyphicon-dashboard"></i> Pesquisa de Pedido</strong>
-		<hr>
-			<div class="row">		
-				<table class="table table-bordered">
-					<tbody>
-						<tr>
-							<td>
-							<form action="Controladora?action=pesquisaPedido" method="post">
-								<label>Código</label>
-								<div class="form-group">
-									<input type="text" class="form-control"
-											name="id" value="" id="">
-								</div>
-								<button type="submit" value="" class="btn btn-primary">
-									Pesquisar por Código
-								</button>
-							</form>
-							</td>
-							<td>
-							<form action="Controladora?action=pesquisaPedido" method="post">
-								<div class="form-group">
-									<label>Trecho</label> <input type="text" name="pesquisa" class="form-control">
-								</div>
-								<button type="submit" value="" class="btn btn-primary">
-									Pesquisar por Trecho
-								</button>
-							</form>
-							</td>
-							<td>
-							<form action="Controladora?action=pesquisaPedido" method="post">
-								<div class="form-group">
-									<label>Data Inicial</label> <input type="text" class="form-control"
-										name="data1" id="datepicker">
-								</div>
-								<div class="form-group">
-									<label>Data Final</label> <input type="text" class="form-control"
-										name="data2" id="datepicker_2">
-								</div>
-								<button type="submit" value="" class="btn btn-primary">
-									Pesquisar por Período
-								</button>
-							</form>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<table class="table">
-     				<thead>
-     				<tr>
-     					<th width="250px">ID Cliente</th>
-     					<th>Produto</th>
-     					<th>Valor</th>
-     					<th>Previsão Entrega</th>
-     					<th>Link</th>
-     				</tr>
-     				</thead>
-     				<tbody>
-     				<c:forEach items="${listaConsertos}" var="pedido">
-     				<tr>
-     					<td>${pedido.cliente_id}</td>
-     					<td>${pedido.nome}</td>
-     					<td><fmt:formatNumber value="${pedido.valor}" type="currency"/></td>
-     					<td>${pedido.previsao}</td>
-     					<td><a href="Controladora?action=editarConserto&id=${pedido.id}">Editar</a></td>
-     				</tr>
-     				</tbody>
-     				</c:forEach>
-     			</table>	
-				
+			<div class="col-md-9">
+				<!-- Página aqui -->
+				<!-- column 2 -->
+				<strong><i class="glyphicon glyphicon-dashboard"></i>
+					Pesquisa de Pedido</strong>
 				<hr>
+				<div class="row">
+					<table class="table table-bordered">
+						<tbody>
+							<tr>
+								<td>
+									<form action="Controladora?action=pesquisaPedido" method="post">
+										<label>Código</label>
+										<div class="form-group">
+											<input type="text" class="form-control" name="id" value=""
+												id="">
+										</div>
+										<button type="submit" value="" class="btn btn-primary">
+											Pesquisar por Código</button>
+									</form>
+								</td>
+								<td>
+									<form action="Controladora?action=pesquisaPedido" method="post">
+										<div class="form-group">
+											<label>Trecho</label> <input type="text" name="pesquisa"
+												class="form-control">
+										</div>
+										<button type="submit" value="" class="btn btn-primary">
+											Pesquisar por Trecho</button>
+									</form>
+								</td>
+								<td>
+									<form action="Controladora?action=pesquisaPedido" method="post">
+										<div class="form-group">
+											<label>Data Inicial</label> <input type="text"
+												class="form-control" name="data1" id="datepicker">
+										</div>
+										<div class="form-group">
+											<label>Data Final</label> <input type="text"
+												class="form-control" name="data2" id="datepicker_2">
+										</div>
+										<button type="submit" value="" class="btn btn-primary">
+											Pesquisar por Período</button>
+									</form>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="table">
+						<thead>
+							<tr>
+								<th width="250px">ID Cliente</th>
+								<th>Produto</th>
+								<th>Valor</th>
+								<th>Previsão Entrega</th>
+								<th>Link</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${listaConsertos}" var="pedido">
+								<tr>
+									<td>${pedido.cliente_id}</td>
+									<td>${pedido.nome}</td>
+									<td><fmt:formatNumber value="${pedido.valor}"
+											type="currency" /></td>
+									<td>${pedido.previsao}</td>
+									<td><a
+										href="Controladora?action=editarConserto&id=${pedido.id}">Editar</a></td>
+								</tr>
+						</tbody>
+						</c:forEach>
+					</table>
+
+					<hr>
+				</div>
+				<div class="row"></div>
 			</div>
-			<div class="row">
-				<%
-					if(request.getParameter("chave")!=null && !request.getParameter("chave").equals("")){
-						out.print("<table class='table'>"
-		     				+"<thead>"
-		     					+"<tr>"
-		     						+"<th width='250px'>Nome Cliente</th>"
-		     						+"<th>Produto</th>"
-		     						+"<th>Valor</th>"
-		     						+"<th>Previsão Entrega</th>"
-		     						+"<th>Link</th>"
-		     					+"</tr>"
-		     				+"</thead>");
-						out.print("</table>");
-					}
-					if(request.getParameter("dataIni")!=null && request.getParameter("dataFin")!=null
-							&& !request.getParameter("dataIni").equals("") && !request.getParameter("dataFin").equals("")){
-						out.print("<table class='table'>"
-		     				+"<thead>"
-		     					+"<tr>"
-		     						+"<th width='250px'>Nome Cliente</th>"
-		     						+"<th>Produto</th>"
-		     						+"<th>Valor</th>"
-		     						+"<th>Previsão Entrega</th>"
-		     						+"<th>Link</th>"
-		     					+"</tr>"
-		     				+"</thead>");
-						out.print("</table>");
-					}
-				%>
-			</div>
-      	</div><!--/col-span-9-->
+			<!--/col-span-9-->
+		</div>
 	</div>
-</div>
-<!-- /Main -->
+	<!-- /Main -->
   </body>
   <!-- /.footer -->
 		<%@ include file="footer.jsp"%>  

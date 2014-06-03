@@ -47,82 +47,70 @@
 <!-- /Header -->
 
 <!-- Main -->
-<div class="container">
-<div class="row">
+	<div class="container">
+		<div class="row">
 
-<!-- Left column -->
-<%@ include file="menuEsquerda.jsp"%>  
+			<!-- Left column -->
+			<%@ include file="menuEsquerda.jsp"%>
 
 
-    <div class="col-md-9">
-        <!-- Página aqui -->	
-      <!-- column 2 -->	
-      <strong><i class="glyphicon glyphicon-dashboard"></i> Pesquisa de Usuário</strong>
-		<hr>
-			<div class="row">		
-				<table class="table table-bordered">
-					<tbody>
-						<tr>
-							<td>
-							<form action="Controladora?action=pesquisaUsuario" method="post">
-								<label>Palavra-chave</label>
-								<div class="form-group">
-									<input type="text" class="form-control"
-											name="pesquisa" value="" id="">
-								</div>
-								<button type="submit" value="" class="btn btn-primary">
-									Pesquisar
-								</button>
-							</form>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<table class="table">
-     				<thead>
-     				<tr>
-     					<th>ID</th>
-     					<th>Nome</th>
-     					<th>E-mail</th>
-     					<th>Matrícula</th>
-     					<th>Ação</th>
-     				</tr>
-     				</thead>
-     				<tbody>
-     				<c:forEach items="${listaUsuarios}" var="user">
-     				<tr>
-     					<td>${user.id}</td>
-     					<td>${user.nome}</td>
-     					<td>${user.email}</td>
-     					<td>${user.matricula}</td>
-     					<td><a class="btn btn-primary btn-xs" href="Controladora?action=editarUsuario&id=${user.id}">Editar</a></td>
-     				</tr>
-     				</tbody>
-     				</c:forEach>
-     			</table>	
-
+			<div class="col-md-9">
+				<!-- Página aqui -->
+				<!-- column 2 -->
+				<strong><i class="glyphicon glyphicon-dashboard"></i>
+					Pesquisa de Usuário</strong>
 				<hr>
+				<div class="row">
+					<table class="table table-bordered">
+						<tbody>
+							<tr>
+								<td>
+									<form action="Controladora?action=pesquisaUsuario"
+										method="post">
+										<label>Palavra-chave</label>
+										<div class="form-group">
+											<input type="text" class="form-control" name="pesquisa"
+												value="" id="">
+										</div>
+										<button type="submit" value="" class="btn btn-primary">
+											Pesquisar</button>
+									</form>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Nome</th>
+								<th>E-mail</th>
+								<th>Matrícula</th>
+								<th>Ação</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${listaUsuarios}" var="user">
+								<tr>
+									<td>${user.id}</td>
+									<td>${user.nome}</td>
+									<td>${user.email}</td>
+									<td>${user.matricula}</td>
+									<td><a class="btn btn-primary btn-xs"
+										href="Controladora?action=editarUsuario&id=${user.id}">Editar</a></td>
+								</tr>
+						</tbody>
+						</c:forEach>
+					</table>
+
+					<hr>
+				</div>
+				<div class="row"></div>
 			</div>
-<div class="row">
-				<%
-					if(request.getParameter("chave")!=null && !request.getParameter("chave").equals("")){
-						out.print("<table class='table'>"
-		     				+"<thead>"
-		     					+"<tr>"
-		     						+"<th width='250px'>Cliente</th>"
-		     						+"<th>CPF</th>"
-		     						+"<th>E-mail</th>"
-		     						+"<th>Link</th>"
-		     					+"</tr>"
-		     				+"</thead>");
-						out.print("</table>");
-					}
-				%>
-			</div>
-      	</div><!--/col-span-9-->
+			<!--/col-span-9-->
+		</div>
 	</div>
-</div>
-<!-- /Main -->
+	<!-- /Main -->
   </body>
   <!-- /.footer -->
 		<%@ include file="footer.jsp"%>  
