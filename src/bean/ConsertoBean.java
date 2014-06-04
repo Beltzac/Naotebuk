@@ -25,6 +25,22 @@ public class ConsertoBean implements Serializable {
 	public Date getPrevisao() {	
 			return previsao;	
 	}
+	
+	public String getLevel(){
+		
+		Date dataAtual = new Date();  
+		
+		if(dataAtual.after(previsao)){
+			return "danger";
+		}
+		
+		if((previsao.getTime() - dataAtual.getTime()) < 172800000){
+			return "warning";
+		}
+		
+		return "active";
+		
+	}
 
 	public void setPrevisao(java.util.Date previsao) {			
 		this.previsao = previsao;			

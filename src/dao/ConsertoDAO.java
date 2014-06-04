@@ -66,7 +66,7 @@ public class ConsertoDAO implements IDAO<ConsertoBean> {
 	
 
 	public List<ConsertoBean> carregarAtrasados() throws Exception {
-		stmtCarregarTodos = con.prepareStatement("SELECT * FROM conserto WHERE previsao < current_date");
+		stmtCarregarTodos = con.prepareStatement("SELECT * FROM conserto WHERE previsao < current_date AND estado_id < 3");
 		ResultSet rs = stmtCarregarTodos.executeQuery();
 		BeanProcessor bp = new BeanProcessor();
 		List<ConsertoBean> l = bp.toBeanList(rs, ConsertoBean.class);
