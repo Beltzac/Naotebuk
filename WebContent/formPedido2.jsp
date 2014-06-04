@@ -91,11 +91,11 @@
 						</div>
 						<div class="form-group">
 							<label>Previsão de Entrega</label> 
-							<input type="text" class="form-control" name="previsao" value="${conserto.previsao}" id="datepicker" required>
+							<input type="text" class="form-control" name="previsao" value="<fmt:formatDate value="${conserto.previsao}" pattern="dd/MM/yyyy"/>" id="datepicker" required>
 						</div>
 						<div class="form-group">
 							<label>Preço</label>
-							<input type="text" data-symbol="R$ " data-thousands="." data-decimal="," class="form-control"	name="valor" id="valor" value="${conserto.valor}" required>
+							<input type="text"  class="form-control" name="valor" id="valor" value="${conserto.valor}" required>
 						</div>
 						<div class="form-group">
 							<label>Estado</label> 

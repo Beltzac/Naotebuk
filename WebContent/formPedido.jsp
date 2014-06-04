@@ -94,7 +94,7 @@
 						</div>
 						<div class="form-group">
 							<label>Preço</label>
-							<input type="text" class="form-control" data-symbol="R$ " data-thousands="." data-decimal="," name="valor" id="valor" value="" required>
+							<input type="text" class="form-control" name="valor" id="valor" value="" required>
 						</div>
 						<div class="form-group">
 							<label>Estado</label> 

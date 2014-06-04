@@ -51,7 +51,7 @@
      					<td>${pedido.cliente_id}</td>
      					<td>${pedido.nome}</td>
      					<td><fmt:formatNumber value="${pedido.valor}" type="currency"/></td>
-     					<td>${pedido.previsao}</td>
+     					<td><fmt:formatDate value="${pedido.previsao}" pattern="dd/MM/yyyy"/></td>
      					<td><a class="btn btn-primary btn-xs" href="Controladora?action=editarConserto&id=${pedido.id}">Editar</a>
      						<a class="btn btn-success btn-xs" href="Controladora?action=pago&id=${pedido.id}" onClick="confirm('Deseja realizar essa ação?')">Pago</a>
      					</td>
