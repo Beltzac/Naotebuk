@@ -1,8 +1,6 @@
 package bean;
 
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ConsertoBean implements Serializable {
@@ -28,20 +26,10 @@ public class ConsertoBean implements Serializable {
 			return previsao;	
 	}
 
-	public void setPrevisao(java.sql.Date previsao) {		
-		this.previsao = new Date(previsao.getTime());				
-    }
-	
-	public void setPrevisao(String previsao) {
-		SimpleDateFormat from = new SimpleDateFormat("dd/MM/yyyy");		
-		try {
-			this.previsao = from.parse(previsao);			
-		} catch (ParseException e) {		
-			this.previsao = null;
-			e.printStackTrace();
-		}
+	public void setPrevisao(java.util.Date previsao) {			
+		this.previsao = previsao;			
 	}
-
+	
 	public ConsertoBean() {
 	}
 
