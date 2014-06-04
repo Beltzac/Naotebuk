@@ -68,6 +68,12 @@ public class Relatorio extends Servlet {
 			if(jasp == "/report/datas-naotebuk.jasper"){
 				String data1 = request.getParameter("data1");
 				String data2 = request.getParameter("data2");
+				
+				if (data1 == null || data2 == null || data1.isEmpty() || data2.isEmpty()){
+					paginaErro(request, response, "Selecione as datas, inicial e final.", null);
+					return;
+				}
+				
 				SimpleDateFormat from = new SimpleDateFormat("dd/MM/yyyy");
 				SimpleDateFormat to = new SimpleDateFormat("yyyy-MM-dd");
 				Date date1 = from.parse(data1);
