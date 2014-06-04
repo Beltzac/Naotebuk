@@ -1,6 +1,7 @@
 package bean;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class ConsertoBean implements Serializable {
 
@@ -19,16 +20,16 @@ public class ConsertoBean implements Serializable {
 	private String descricao;
 	private String observacao;
 	private double valor;
-	private String previsao;
+	private Date previsao;
 
-	public String getPrevisao() {
-		return previsao;
+	public Date getPrevisao() {	
+			return previsao;	
 	}
 
-	public void setPrevisao(String previsao) {
-		this.previsao = previsao;
+	public void setPrevisao(java.util.Date previsao) {			
+		this.previsao = previsao;			
 	}
-
+	
 	public ConsertoBean() {
 	}
 

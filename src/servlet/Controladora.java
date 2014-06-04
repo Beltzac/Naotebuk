@@ -702,33 +702,7 @@ public class Controladora extends Servlet {
 				
 				break;
 				
-			case "atrasar":
-				
-				int idAtr = Integer.valueOf(request.getParameter("id"));
-				
-				consertoDAO = null;
-				try {
-					consertoDAO = new ConsertoDAO();
-				} catch (Exception e) {
-					e.printStackTrace();
-					paginaErro(request, response,
-							"Erro ao processar (Conserto)", e.getMessage());
-					return;
-				}
-				
-				try {
-					consertoDAO.atrasar(idAtr);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-					paginaErro(request, response,
-							"Erro ao editar o conserto", e1.getMessage());
-					return;
-				}
 
-				response.sendRedirect("Controladora?action=atrasados");
-				
-				break;
-				
 			case "done":
 				
 				int idDone = Integer.valueOf(request.getParameter("id"));
