@@ -47,7 +47,7 @@
      				</thead>
      				<tbody>
      				<c:forEach items="${listaEmAberto}" var="pedido">
-     				<tr>
+     				<tr class = "${pedido.level}">
      					<td>${pedido.cliente_id}</td>
      					<td>${pedido.nome}</td>
      					<td><fmt:formatNumber value="${pedido.valor}" type="currency"/></td>
